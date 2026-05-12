@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>司机应付 — 星商物流头程中心</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:13px;background:#f0f2f5;color:#333;display:flex;flex-direction:column;height:100vh;overflow:hidden}
+.tnav{height:48px;background:#1a1f2e;display:flex;align-items:center;justify-content:space-between;padding:0 16px;flex-shrink:0;z-index:100}
+.logo{color:#fff;font-size:13px;font-weight:700;padding-right:18px;border-right:1px solid #2d3446;margin-right:2px;display:flex;align-items:center;gap:6px}
+.logo-icon{width:26px;height:26px;background:#14b8a6;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff}
+.nmenu{display:flex}
+.ni{color:#9ca3af;font-size:12px;padding:0 13px;height:48px;display:flex;align-items:center;gap:4px;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+.ni:hover{color:#e5e7eb}.ni.on{color:#14b8a6;border-bottom-color:#14b8a6}
+.tright{display:flex;align-items:center;gap:7px}
+.tbtn{height:27px;padding:0 11px;border-radius:4px;font-size:12px;cursor:pointer;border:none;display:flex;align-items:center;gap:4px;white-space:nowrap}
+.tbtn.teal{background:#14b8a6;color:#fff}.tbtn.ol{background:transparent;color:#9ca3af;border:1px solid #374151}
+.uav{width:27px;height:27px;border-radius:50%;background:#374151;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:11px;cursor:pointer}
+.layout{display:flex;flex:1;overflow:hidden}
+.sb{width:146px;background:#1e2333;flex-shrink:0;overflow-y:auto;display:flex;flex-direction:column}
+.sb-logo{padding:13px 12px 9px;color:#fff;font-size:11px;font-weight:700;border-bottom:1px solid #2d3446}
+.sb-logo span{color:#14b8a6}
+.mg{padding:7px 0}
+.mi{display:flex;align-items:center;gap:6px;padding:7px 12px;color:#9ca3af;font-size:12px;cursor:pointer;border-left:2px solid transparent;white-space:nowrap}
+.mi:hover{color:#e5e7eb;background:#252b3d}
+.mi.on{color:#14b8a6;background:#1a2a2a;border-left-color:#14b8a6}
+.mi svg{width:13px;height:13px;flex-shrink:0}
+.mi.sub{padding-left:26px;font-size:11px}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.sbar{background:#fff;border-bottom:1px solid #e5e7eb;flex-shrink:0}
+.bc{display:flex;align-items:center;gap:4px;padding:9px 15px 0;font-size:12px;color:#6b7280}
+.bc span{cursor:pointer}.bc span:hover{color:#14b8a6}.bc .sep{color:#d1d5db}
+.tabs{display:flex;padding:0 11px}
+.tab{padding:7px 13px;font-size:12px;color:#6b7280;cursor:pointer;border-bottom:2px solid transparent;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tab.on{color:#14b8a6;border-bottom-color:#14b8a6;font-weight:500}
+.tab:hover:not(.on){color:#374151}
+.tx{font-size:10px;color:#9ca3af}
+.sa{background:#fff;border-bottom:1px solid #e5e7eb;padding:11px 15px;flex-shrink:0}
+.frow{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.frow:last-child{margin-bottom:0}
+.fc{display:flex;align-items:center}
+.flabel{font-size:12px;color:#374151;white-space:nowrap;margin-right:5px}
+.sdw{position:relative;display:inline-flex;align-items:center}
+.sdi{height:28px;padding:0 22px 0 8px;border:1px solid #d1d5db;border-radius:4px;font-size:12px;color:#374151;background:#fff;outline:none;width:126px}
+.sdi:focus{border-color:#14b8a6;box-shadow:0 0 0 2px rgba(20,184,166,.12)}
+.sdarr{position:absolute;right:6px;pointer-events:none}
+.sdd{position:absolute;top:30px;left:0;min-width:126px;background:#fff;border:1px solid #d1d5db;border-radius:4px;box-shadow:0 4px 14px rgba(0,0,0,.1);z-index:400;display:none;max-height:160px;overflow-y:auto}
+.sdd.open{display:block}
+.sditem{padding:6px 10px;font-size:12px;color:#374151;cursor:pointer;white-space:nowrap}
+.sditem:hover{background:#f0fdf4;color:#0f766e}
+.fi{height:28px;padding:0 8px;border:1px solid #d1d5db;border-radius:4px;font-size:12px;color:#374151;background:#fff;outline:none}
+.fi:focus{border-color:#14b8a6;box-shadow:0 0 0 2px rgba(20,184,166,.12)}
+.dw{display:flex;align-items:center;gap:4px}
+.dsep{font-size:12px;color:#9ca3af}
+.arow{display:flex;align-items:center;gap:7px;margin-top:8px}
+.abtn{height:29px;padding:0 13px;border-radius:4px;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:4px;white-space:nowrap;border:none}
+.abtn.exp{background:#fff;color:#374151;border:1px solid #d1d5db}.abtn.exp:hover{background:#f9fafb}
+.abtn.tpl{background:#fff;color:#374151;border:1px solid #d1d5db}.abtn.tpl:hover{background:#f9fafb}
+.abtn.imp{background:#14b8a6;color:#fff}.abtn.imp:hover{background:#0d9488}
+.abtn.sb2{background:#14b8a6;color:#fff}.abtn.sb2:hover{background:#0d9488}
+.abtn.rst{background:#fff;color:#6b7280;border:1px solid #d1d5db}.abtn.rst:hover{background:#f9fafb}
+.content{flex:1;overflow:auto;padding:11px 15px}
+.twrap{border:1px solid #e5e7eb;border-radius:6px;overflow:auto;background:#fff}
+table{border-collapse:collapse;font-size:12px;width:max-content;min-width:100%}
+th{white-space:nowrap;text-align:center;vertical-align:middle;border-right:1px solid #e5e7eb;padding:6px 9px;position:sticky;z-index:10}
+th:last-child{border-right:none}
+tr.r1 th{background:#f0faf9;color:#0f766e;font-weight:600;font-size:12px;border-bottom:1px solid #a7f3d0;top:0;z-index:22}
+tr.r2 th{background:#f0faf9;color:#0f766e;font-weight:600;font-size:12px;border-bottom:1px solid #a7f3d0;top:29px;z-index:21}
+tbody tr{border-bottom:1px solid #f3f4f6;transition:background .1s;height:42px}
+tbody tr:hover{background:#f0faf9}
+tbody tr:last-child{border-bottom:none}
+td{padding:7px 9px;border-right:1px solid #f3f4f6;text-align:center;white-space:nowrap;color:#374151;vertical-align:middle}
+td:last-child{border-right:none}
+td.mono{font-family:monospace;font-size:12px;color:#374151}
+td.muted{font-size:12px;color:#6b7280}
+.amt{font-variant-numeric:tabular-nums;color:#0f766e;font-weight:500}
+.amtn{font-variant-numeric:tabular-nums;color:#ef4444;font-weight:500}
+.dash{color:#d1d5db}
+.cb{width:15px;height:15px;cursor:pointer;accent-color:#14b8a6;flex-shrink:0}
+.xb{width:17px;height:17px;border-radius:50%;background:#0f766e;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;vertical-align:middle;margin-left:5px;padding:0;transition:background .15s}
+.xb:hover{background:#14b8a6}
+.xb svg{width:9px;height:9px;overflow:visible}
+.xb svg line{stroke:#fff;stroke-width:2.2;stroke-linecap:round}
+.hd,.hdf{display:none}.hd.v,.hdf.v{display:table-cell}
+th.hd,th.hdf{display:none}th.hd.v,th.hdf.v{display:table-cell}
+.pgbar{background:#fff;border-top:1px solid #e5e7eb;padding:7px 15px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.pginfo{font-size:12px;color:#6b7280}
+.pgctrl{display:flex;align-items:center;gap:5px}
+.pgsel{height:26px;padding:0 18px 0 6px;border:1px solid #d1d5db;border-radius:4px;font-size:12px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%239ca3af'/%3E%3C/svg%3E") no-repeat right 5px center;appearance:none}
+.pgb{height:26px;min-width:26px;padding:0 5px;border:1px solid #d1d5db;border-radius:4px;background:#fff;color:#374151;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pgb:hover{border-color:#14b8a6;color:#14b8a6}.pgb.on{background:#14b8a6;color:#fff;border-color:#14b8a6}
+.pgj{display:flex;align-items:center;gap:5px;font-size:12px;color:#6b7280}
+.pgj input{width:38px;height:26px;text-align:center;border:1px solid #d1d5db;border-radius:4px;font-size:12px;padding:0}
+.pgj .go{height:26px;padding:0 7px;background:#fff;border:1px solid #d1d5db;border-radius:4px;font-size:12px;cursor:pointer;color:#374151}
+.pgj .go:hover{border-color:#14b8a6;color:#14b8a6}
+.toast{position:fixed;top:62px;left:50%;transform:translateX(-50%) translateY(-10px);background:#1f2937;color:#fff;padding:9px 18px;border-radius:8px;font-size:13px;z-index:9999;opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;display:flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.ok .ti{color:#4ade80}.toast.warn .ti{color:#fbbf24}
+.moverlay{position:fixed;inset:0;background:rgba(0,0,0,.38);z-index:800;display:none;align-items:center;justify-content:center}
+.moverlay.open{display:flex}
+.mbox{background:#fff;border-radius:10px;width:680px;padding:28px 32px 22px;box-shadow:0 8px 32px rgba(0,0,0,.18)}
+.mtitle{font-size:15px;font-weight:600;color:#111;margin-bottom:18px}
+.mimpbtn{background:#14b8a6;color:#fff;border:none;border-radius:5px;padding:8px 20px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:5px}
+.mimpbtn:hover{background:#0d9488}
+.mfooter{display:flex;justify-content:flex-end;margin-top:24px}
+.mcancel-wrap{background:rgba(20,184,166,.3);border-radius:5px;padding:4px 10px}
+.mcancel{color:#14b8a6;font-size:13px;cursor:pointer;font-weight:500;background:none;border:none}
+.mcancel:hover{color:#0d9488}
+.dl-panel{position:fixed;top:48px;right:0;width:520px;background:#fff;border:1px solid #e5e7eb;border-radius:0 0 0 0;box-shadow:0 8px 24px rgba(0,0,0,.14);z-index:700;display:none;flex-direction:column}
+.dl-panel.open{display:flex}
+.dl-filter{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid #e5e7eb}
+.dl-filter-label{font-size:12px;color:#374151}
+.dl-filter-sel{height:28px;padding:0 20px 0 8px;border:1px solid #d1d5db;border-radius:4px;font-size:12px;background:#fff;appearance:none;cursor:pointer}
+.dl-filter-btn{height:28px;padding:0 12px;border-radius:4px;font-size:12px;cursor:pointer;border:none;color:#fff;background:#14b8a6}
+.dl-filter-btn:hover{background:#0d9488}
+.dl-tbar{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:8px 16px}
+.dl-tclose{width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:4px;color:#9ca3af}
+.dl-tclose:hover{background:#f3f4f6;color:#374151}
+.dl-table{width:100%;border-collapse:collapse;font-size:12px}
+.dl-table th{background:#f9fafb;color:#6b7280;font-weight:500;padding:8px 12px;text-align:left;border-bottom:1px solid #e5e7eb;font-size:12px}
+.dl-table td{padding:8px 12px;border-bottom:1px solid #f3f4f6;color:#374151;font-size:12px}
+.dl-table tbody tr:hover{background:#f9fafb}
+.dl-dl-link{color:#f59e0b;font-size:12px;cursor:pointer;padding:3px 10px;border-radius:4px;background:#fffbeb;border:1px solid #fde68a;display:inline-block}
+.dl-dl-link:hover{background:#fef3c7;border-color:#fcd34d}
+.dl-pgbar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;border-top:1px solid #e5e7eb}
+.dl-pginfo{font-size:12px;color:#6b7280}
+.navdl-panel{position:fixed;top:48px;right:0;width:280px;background:#fff;border:1px solid #e5e7eb;border-radius:0 0 8px 8px;box-shadow:0 8px 24px rgba(0,0,0,.14);z-index:700;display:none;flex-direction:column}
+.navdl-panel.open{display:flex}
+.navdl-header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px 8px;border-bottom:1px solid #f3f4f6}
+.navdl-header-title{font-size:14px;font-weight:600;color:#111}
+.navdl-header-acts{display:flex;align-items:center;gap:8px}
+.navdl-hact{width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:4px;color:#9ca3af}
+.navdl-hact:hover{background:#f3f4f6;color:#374151}
+.navdl-list{padding:6px 0}
+.navdl-item{display:flex;align-items:center;gap:10px;padding:9px 14px;cursor:pointer;position:relative}
+.navdl-item:hover{background:#f9fafb}
+.navdl-item:hover .navdl-item-acts{display:flex}
+.navdl-icon{width:30px;height:30px;background:#16a34a;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;font-weight:700;color:#fff}
+.navdl-info{flex:1;min-width:0}
+.navdl-name{font-size:12px;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px}
+.navdl-sub{font-size:11px;color:#14b8a6;cursor:pointer;margin-top:1px}
+.navdl-sub:hover{color:#0d9488}
+.navdl-item-acts{display:none;align-items:center;gap:6px;position:absolute;right:12px}
+.navdl-footer{padding:8px 14px;border-top:1px solid #f3f4f6}
+.navdl-more{font-size:12px;color:#374151;cursor:pointer;padding:6px 0;text-align:center;border:1px solid #e5e7eb;border-radius:5px}
+.navdl-more:hover{background:#f9fafb}
+::-webkit-scrollbar{height:5px;width:5px}
+::-webkit-scrollbar-track{background:#f9fafb}
+::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:#9ca3af}
+</style>
+</head>
+<body>
+
+<div class="toast ok" id="toast"><span class="ti">✓</span><span id="tmsg"></span></div>
+
+<div class="dl-panel" id="dlPanel">
+  <div class="dl-filter">
+    <span class="dl-filter-label">任务类型</span>
+    <select class="dl-filter-sel" id="dlFilterType">
+      <option value="">请选择</option>
+      <option value="export">费用导出</option>
+      <option value="import">费用导入</option>
+    </select>
+    <button class="dl-filter-btn" onclick="filterDlTasks()">查询</button>
+    <button class="dl-filter-btn" style="background:#fff;color:#14b8a6;border:1px solid #14b8a6" onclick="filterDlTasks('all')">查看所有记录</button>
+  </div>
+  <div class="dl-tbar">
+    <div class="dl-tclose" onclick="closeDlPanel()" title="关闭"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l8 8M12 4l-8 8"/></svg></div>
+  </div>
+  <table class="dl-table">
+    <thead>
+      <tr>
+        <th>任务类型</th>
+        <th>任务状态</th>
+        <th>完成时间</th>
+        <th>处理结果</th>
+        <th>处理结果下载</th>
+      </tr>
+    </thead>
+    <tbody id="dlTaskList"></tbody>
+  </table>
+  <div class="dl-pgbar">
+    <div class="dl-pginfo" id="dlPgInfo">共 6 条</div>
+  </div>
+</div>
+
+<div class="navdl-panel" id="navDlPanel">
+  <div class="navdl-header">
+    <span class="navdl-header-title">下载</span>
+    <div class="navdl-header-acts">
+      <div class="navdl-hact" title="新建文件夹"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 4h14v9a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4zm3-3h4l1 3"/></svg></div>
+      <div class="navdl-hact" title="搜索"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6.5" cy="6.5" r="4"/><path d="M11 11l3 3"/></svg></div>
+      <div class="navdl-hact" title="更多"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="3" cy="8" r="1"/><circle cx="8" cy="8" r="1"/><circle cx="13" cy="8" r="1"/></svg></div>
+      <div class="navdl-hact" title="关闭" onclick="closeNavDl()"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l8 8M12 4l-8 8"/></svg></div>
+    </div>
+  </div>
+  <div class="navdl-list" id="navDlList"></div>
+  <div class="navdl-footer">
+    <div class="navdl-more" id="navDlMoreBtn" onclick="toggleNavDlMore()">查看更多</div>
+  </div>
+</div>
+
+<div class="moverlay" id="imodal">
+  <div class="mbox">
+    <div class="mtitle">导入费用明细</div>
+    <button class="mimpbtn" onclick="document.getElementById('ffile').click()">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h10M8 10V2M5 5l3-3 3 3"/></svg>
+      司机费用明细导入
+    </button>
+    <input type="file" id="ffile" accept=".xlsx,.xls,.csv" style="display:none" onchange="onImport(this)">
+    <div class="mfooter">
+      <div class="mcancel-wrap"><button class="mcancel" onclick="closeModal()">取消</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="tnav">
+  <div style="display:flex;align-items:center">
+    <div class="logo"><div class="logo-icon">S</div>STARMERX</div>
+    <nav class="nmenu">
+      <div class="ni"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>供应商中心</div>
+      <div class="ni"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><circle cx="8" cy="7" r="4"/><path d="M3 14c0-3 10-3 10 0"/></svg>客服中心</div>
+      <div class="ni"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M2 4h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4zm3-3h6"/></svg>采购中心</div>
+      <div class="ni on"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M1 8l3-3h8l3 3v5a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V8z"/><path d="M4 5V2h8v3"/></svg>头程物流中心</div>
+      <div class="ni"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M1 4h14M1 8h14M1 12h14"/></svg>订单中心</div>
+    </nav>
+  </div>
+  <div class="tright">
+    <span style="color:#4b5563;font-size:11px">地道，一起起发，一直到货！不收回扣，不放难题，不行！</span>
+    <button class="tbtn teal" id="dlTrigger" onclick="toggleDlPanel()" style="position:relative">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h10M8 2v8M5 7l3 3 3-3"/></svg>
+      下载列表
+    </button>
+    <button class="tbtn teal" id="navDlBtn" onclick="toggleNavDl()" style="position:relative;display:none">
+      <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h10M8 2v8M5 7l3 3 3-3"/></svg>
+    </button>
+    <button class="tbtn teal">消息中心</button>
+    <div class="uav">李</div>
+  </div>
+</div>
+
+<div class="layout">
+  <aside class="sb">
+    <div class="sb-logo"><span>星商</span>物流头程中心</div>
+    <div class="mg">
+      <div class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>首页</div>
+    </div>
+    <div class="mg">
+      <div class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>基础设置</div>
+      <div class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M5 7h6M5 10h4"/></svg>拖车管理</div>
+    </div>
+    <div class="mg">
+      <div class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10l1 5H2L3 3zm0 5v5h10V8"/></svg>头程管理</div>
+      <div class="mi sub">拼箱管理</div><div class="mi sub">拼车管理</div>
+      <div class="mi sub">头程价格管理</div><div class="mi sub">报关资料管理</div>
+      <div class="mi sub">清关资料管理</div><div class="mi sub">ISF管理</div>
+      <div class="mi sub">头程运单管理</div><div class="mi sub">大柜时效</div>
+      <div class="mi sub">大柜对账管理</div><div class="mi sub">头程运输方式</div>
+      <div class="mi sub">海运总账表</div>
+    </div>
+    <div class="mg">
+      <div class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 2h12v12H2z"/><path d="M6 2v12M2 6h12"/></svg>海运费用</div>
+      <div class="mi sub">海运运费</div>
+      <div class="mi sub on">万拓高头程运费</div>
+    </div>
+    <div class="mg">
+      <div class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12V4h12v8"/><path d="M8 4v8M5 8h6"/></svg>物流报表</div>
+      <div class="mi sub">海运运力看板</div>
+    </div>
+    <div class="mg">
+      <div class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm0 0V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v1"/></svg>请款管理</div>
+      <div class="mi sub">请款单列表</div><div class="mi sub">账户报表</div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="sbar">
+      <div class="bc">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+        <span>头程总单</span><span class="sep">/</span><span style="color:#14b8a6">司机应付</span>
+      </div>
+      <div class="tabs">
+        <div class="tab">dashboard</div>
+        <div class="tab on">司机应付 <span class="tx">×</span></div>
+        <div class="tab">拼箱的管理 <span class="tx">×</span></div>
+        <div class="tab">头程单的管理 <span class="tx">×</span></div>
+      </div>
+    </div>
+
+    <div class="sa">
+      <div class="frow">
+        <div class="fc"><span class="flabel">系统柜号</span><input type="text" class="fi" style="width:155px" id="f-cab" placeholder="支持多个，逗号隔开"></div>
+        <div class="fc"><span class="flabel">集装箱号</span><input type="text" class="fi" style="width:155px" id="f-box" placeholder="支持多个，逗号隔开"></div>
+        <div class="fc"><span class="flabel">提运单号</span><input type="text" class="fi" style="width:155px" id="f-bill" placeholder="支持多个，逗号隔开"></div>
+        <div class="fc"><span class="flabel">物流操作人员</span><input type="text" class="fi" style="width:140px" id="f-lop" placeholder="支持多个，逗号隔开"></div>
+      </div>
+      <div class="frow">
+        <div class="fc"><span class="flabel">司机姓名</span>
+          <div class="sdw"><input class="sdi" id="s-name" placeholder="请选择/输入" autocomplete="off"
+            oninput="filterDD('s-name','d-name',NAMES)" onfocus="openDD('s-name','d-name',NAMES)" onblur="delayClose('d-name')">
+            <svg class="sdarr" width="10" height="6" viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z" fill="#9ca3af"/></svg>
+            <div class="sdd" id="d-name"></div></div></div>
+        <div class="fc"><span class="flabel">车牌号</span>
+          <div class="sdw"><input class="sdi" id="s-plate" placeholder="请选择/输入" autocomplete="off"
+            oninput="filterDD('s-plate','d-plate',PLATES)" onfocus="openDD('s-plate','d-plate',PLATES)" onblur="delayClose('d-plate')">
+            <svg class="sdarr" width="10" height="6" viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z" fill="#9ca3af"/></svg>
+            <div class="sdd" id="d-plate"></div></div></div>
+        <div class="fc"><span class="flabel">装柜地点</span>
+          <div class="sdw"><input class="sdi" id="s-loc" placeholder="请选择/输入" autocomplete="off"
+            oninput="filterDD('s-loc','d-loc',LOCS)" onfocus="openDD('s-loc','d-loc',LOCS)" onblur="delayClose('d-loc')">
+            <svg class="sdarr" width="10" height="6" viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z" fill="#9ca3af"/></svg>
+            <div class="sdd" id="d-loc"></div></div></div>
+        <div class="fc"><span class="flabel">提柜点</span>
+          <div class="sdw"><input class="sdi" id="s-yp" placeholder="请选择/输入" autocomplete="off"
+            oninput="filterDD('s-yp','d-yp',YARDS)" onfocus="openDD('s-yp','d-yp',YARDS)" onblur="delayClose('d-yp')">
+            <svg class="sdarr" width="10" height="6" viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z" fill="#9ca3af"/></svg>
+            <div class="sdd" id="d-yp"></div></div></div>
+        <div class="fc"><span class="flabel">还柜点</span>
+          <div class="sdw"><input class="sdi" id="s-yr" placeholder="请选择/输入" autocomplete="off"
+            oninput="filterDD('s-yr','d-yr',YARDS)" onfocus="openDD('s-yr','d-yr',YARDS)" onblur="delayClose('d-yr')">
+            <svg class="sdarr" width="10" height="6" viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z" fill="#9ca3af"/></svg>
+            <div class="sdd" id="d-yr"></div></div></div>
+      </div>
+      <div class="frow" style="margin-bottom:0">
+        <div class="fc"><span class="flabel">出运时间</span>
+          <div class="dw"><input type="date" class="fi" style="width:126px" id="f-d1"><span class="dsep">至</span><input type="date" class="fi" style="width:126px" id="f-d2"></div>
+        </div>
+        <button class="abtn sb2" onclick="doSearch()">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6.5" cy="6.5" r="4"/><path d="M11 11l3 3"/></svg>搜索
+        </button>
+        <button class="abtn rst" onclick="doReset()">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8a6 6 0 1 1 1.5 4"/><path d="M2 12V8h4"/></svg>重置
+        </button>
+      </div>
+      <div class="arow">
+        <button class="abtn exp" onclick="doExport()">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h10M8 2v8M5 7l3 3 3-3"/></svg>导出
+        </button>
+        <button class="abtn tpl" onclick="doTpl()">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="1"/><path d="M5 8h6M8 5v6"/></svg>导入模板下载
+        </button>
+        <button class="abtn imp" onclick="openModal()">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h10M8 10V2M5 5l3-3 3 3"/></svg>导入
+        </button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="twrap">
+        <table id="MT">
+          <thead>
+            <tr class="r1" id="r1">
+              <th rowspan="2" style="min-width:32px;width:32px;padding:6px 4px">
+                <input type="checkbox" class="cb" id="cbAll" onchange="toggleAll(this)" style="width:13px;height:13px">
+              </th>
+              <th rowspan="2" style="min-width:38px;width:38px;font-size:12px;color:#374151">序号</th>
+              <th rowspan="2" style="min-width:76px;width:76px">系统柜号</th>
+              <th rowspan="2" style="min-width:104px;width:104px">集装箱号</th>
+              <th rowspan="2" style="min-width:88px;width:88px">提运单号</th>
+              <th rowspan="2" style="min-width:92px;width:92px">出运时间</th>
+              <th rowspan="2" style="min-width:85px;width:85px">提柜点</th>
+              <th rowspan="2" style="min-width:85px;width:85px">还柜点</th>
+              <th rowspan="2" style="min-width:85px;width:85px">外堆场</th>
+              <th rowspan="2" style="min-width:85px;width:85px">装柜地点</th>
+              <th rowspan="2" style="min-width:115px;width:115px">运输线路</th>
+              <th rowspan="2" style="min-width:88px;width:88px">物流操作人员</th>
+              <th id="g1" colspan="3" style="min-width:60px;font-weight:700;border-bottom:2px solid #a7f3d0">
+                司机费用明细
+                <button class="xb" id="btnF" onclick="toggleFee(event)">
+                  <svg viewBox="0 0 10 10"><line x1="2" y1="5" x2="8" y2="5"/><line id="fvl" x1="5" y1="2" x2="5" y2="8"/></svg>
+                </button>
+              </th>
+              </tr>
+            <tr class="r2" id="r2">
+              <th style="min-width:60px;width:60px">司机姓名</th>
+              <th style="min-width:78px;width:78px">车牌号</th>
+              <th style="min-width:90px;width:90px">汇总</th>
+              <th class="hd hdf" style="min-width:62px;width:62px">计件费</th>
+              <th class="hd hdf" style="min-width:62px;width:62px">增点费</th>
+              <th class="hd hdf" style="min-width:62px;width:62px">异提费</th>
+              <th class="hd hdf" style="min-width:62px;width:62px">压夜费</th>
+              <th class="hd hdf" style="min-width:62px;width:62px">过磅费</th>
+              <th class="hd hdf" style="min-width:62px;width:62px">超重费</th>
+              <th class="hd hdf" style="min-width:62px;width:62px">封条费</th>
+              <th class="hd hdf" style="min-width:62px;width:62px">停车费</th>
+              <th class="hd hdf" style="min-width:90px;width:90px;font-weight:600">其他费用</th>
+              <th class="hd hdf" style="min-width:100px;width:100px">其他费用备注</th>
+            </tr>
+          </thead>
+          <tbody id="TB"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="pgbar">
+      <div class="pginfo" id="pginfo">共 <strong>30</strong> 条</div>
+      <div class="pgctrl">
+        <select class="pgsel"><option>30条/页</option><option>50条/页</option><option>100条/页</option></select>
+        <button class="pgb" id="prevB">&#8249;</button>
+        <div id="pgNums" style="display:flex;gap:4px"></div>
+        <button class="pgb" id="nextB">&#8250;</button>
+        <div class="pgj">前往 <input type="number" id="jmpI" min="1" value="1"> 页 <button class="go" id="jmpB">确定</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var NAMES=['张三','李四','王五','赵六','孙七','周八','郑十','刘一','陈二','何四','朱五','吴六','冯七','许八','杨九'];
+var PLATES=['粤A12345','粤B23456','粤C34567','粤D45678','粤E56789','粤F67890','粤H89011','粤J90123','粤K01234','粤L12345','粤N34567','粤M45678','粤P56789','粤Q67890','粤R78901'];
+var YARDS=['盐田码头','蛇口码头','南沙码头','大铲湾弯头'];
+var OUTER_YARDS=['黄埔外堆场','南沙外堆场','蛇口外堆场','盐田外堆场','东莞外堆场','佛山外堆场'];
+var LOCS=['广州白云仓','深圳龙华仓','东莞虎门仓','佛山禅城仓','中山小榄仓','广州花都仓','惠州仲恺仓'];
+var ROUTES=['广州白云→南沙港','东莞虎门→深圳盐田港','佛山禅城→广州南沙港','广州花都→黄埔港','中山小榄→南沙港','惠州仲恺→盐田港','广州→佛山→南沙港','深圳→东莞→广州南沙'];
+var TIMES=['2025-05-03 08:21','2025-05-05 14:33','2025-05-08 09:15','2025-05-10 16:42','2025-05-12 11:08','2025-05-14 07:55','2025-05-16 13:20','2025-05-18 10:37','2025-05-20 09:01','2025-05-22 15:44'];
+var OPS=['陈小明','李婷','王刚','张伟','刘洋','赵磊'];
+var LOPS=['海运操作A','海运操作B','物流专员C','操作专员D','物流张员','海运操作E'];
+
+function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+function rf(){return Math.random()<0.38?0:rnd(50,900);}
+function pk(a,i){return a[i%a.length];}
+function fa(n){if(!n)return'<span class="dash">\u2014</span>';return'<span class="amt">'+n.toFixed(3)+'\u2009CNY</span>';}
+function fd(n){if(!n)return'<span class="dash">\u2014</span>';return'<span class="amtn">-'+n.toFixed(3)+'\u2009CNY</span>';}
+
+var ALLDATA=Array.from({length:30},function(_,i){
+  var f={ji:rf(),zeng:rf(),yi:rf(),ya:rf(),guo:rf(),chao:rf(),feng:rf(),ting:rf()};
+  var fSum=f.ji+f.zeng+f.yi+f.ya+f.guo+f.chao+f.feng+f.ting;
+  var o={lujiao:rf(),ranyou:rf(),weixiu:rf(),za:rf()};
+  var oSum=o.lujiao+o.ranyou+o.weixiu+o.za;
+  return{no:i+1,bill:'BL-25'+String(i+1000).padStart(5,'0'),cab:'G'+String(i+10000),
+    box:'MSCU'+rnd(1000000,9999999),name:pk(NAMES,i),plate:pk(PLATES,i),
+    yardP:pk(YARDS,i),yardR:pk(YARDS,i+1),outerYard:pk(OUTER_YARDS,i),loc:pk(LOCS,i),route:pk(ROUTES,i),
+    time:pk(TIMES,i),lop:pk(LOPS,i),
+    fSum:fSum+oSum,ji:f.ji,zeng:f.zeng,yi:f.yi,ya:f.ya,guo:f.guo,chao:f.chao,feng:f.feng,ting:f.ting,
+    oSum:oSum,lujiao:o.lujiao,ranyou:o.ranyou,weixiu:o.weixiu,za:o.za};
+});
+var DISP=[].concat(ALLDATA);
+
+function openDD(sid,did,opts){
+  var inp=document.getElementById(sid);
+  var dd=document.getElementById(did);
+  var q=inp.value.trim().toLowerCase();
+  var list=q?opts.filter(function(o){return o.toLowerCase().indexOf(q)>=0}):opts;
+  dd.innerHTML=list.map(function(o){return'<div class="sditem" onmousedown="pickDD(\''+sid+'\',\''+did+'\',\''+o+'\')">'+o+'</div>';}).join('');
+  dd.classList.add('open');
+}
+function filterDD(sid,did,opts){openDD(sid,did,opts);}
+function delayClose(did){setTimeout(function(){document.getElementById(did).classList.remove('open')},280);}
+function pickDD(sid,did,val){document.getElementById(sid).value=val;document.getElementById(did).classList.remove('open');}
+
+function toggleAll(cb){document.querySelectorAll('tbody .cb').forEach(function(c){c.checked=cb.checked});}
+
+var fOpen=false;
+function setHDF(v){document.querySelectorAll('th.hdf,td.hdf').forEach(function(el){el.classList.toggle('v',v);});}
+
+function toggleFee(e){
+  e.stopPropagation();
+  fOpen=!fOpen;
+  setHDF(fOpen);
+  document.getElementById('g1').colSpan=fOpen?13:3;
+  document.getElementById('fvl').style.display=fOpen?'none':'';
+}
+
+function reVis(){
+  if(fOpen)setHDF(true);
+}
+
+function renderRows(data){
+  var html='';
+  for(var i=0;i<data.length;i++){
+    var row=data[i];
+    html+='<tr>'+
+      '<td style="padding:7px 4px;text-align:center"><input type="checkbox" class="cb" style="width:13px;height:13px" onchange="syncAllCb()"></td>'+
+      '<td style="font-size:12px;color:#6b7280;font-weight:500">'+row.no+'</td>'+
+      '<td class="mono">'+row.cab+'</td>'+
+      '<td class="mono">'+row.box+'</td>'+
+      '<td class="mono">'+row.bill+'</td>'+
+      '<td class="muted">'+row.time+'</td>'+
+      '<td class="muted">'+row.yardP+'</td>'+
+      '<td class="muted">'+row.yardR+'</td>'+
+      '<td class="muted">'+row.outerYard+'</td>'+
+      '<td class="muted">'+row.loc+'</td>'+
+      '<td>'+row.route+'</td>'+
+      '<td>'+row.lop+'</td>'+
+      '<td>'+row.name+'</td>'+
+      '<td>'+row.plate+'</td>'+
+      '<td>'+fa(row.fSum)+'</td>'+
+      '<td class="hd hdf">'+fa(row.ji)+'</td>'+
+      '<td class="hd hdf">'+fa(row.zeng)+'</td>'+
+      '<td class="hd hdf">'+fa(row.yi)+'</td>'+
+      '<td class="hd hdf">'+fa(row.ya)+'</td>'+
+      '<td class="hd hdf">'+fa(row.guo)+'</td>'+
+      '<td class="hd hdf">'+fa(row.chao)+'</td>'+
+      '<td class="hd hdf">'+fa(row.feng)+'</td>'+
+      '<td class="hd hdf">'+fa(row.ting)+'</td>'+
+      '<td class="hd hdf">'+fa(row.oSum)+'</td>'+
+      '<td class="hd hdf" style="text-align:left;padding:4px 6px"><input type="text" class="oremark" data-no="'+row.no+'" placeholder="路桥节约费、燃油节约费等" style="width:100%;height:22px;border:1px solid #d1d5db;border-radius:3px;font-size:12px;padding:2px 6px;color:#374151;outline:none" onfocus="this.style.borderColor=\'#14b8a6\'" onblur="this.style.borderColor=\'#d1d5db\'"></td>'+
+    '</tr>';
+  }
+  document.getElementById('TB').innerHTML=html;
+  reVis();
+  document.getElementById('pginfo').innerHTML='共 <strong>'+data.length+'</strong> 条';
+}
+
+function syncAllCb(){
+  var all=document.querySelectorAll('tbody .cb');
+  var checked=true;
+  for(var i=0;i<all.length;i++){if(!all[i].checked){checked=false;break;}}
+  document.getElementById('cbAll').checked=checked;
+}
+
+function doSearch(){
+  var name=document.getElementById('s-name').value.trim();
+  var plate=document.getElementById('s-plate').value.trim();
+  var loc=document.getElementById('s-loc').value.trim();
+  var yp=document.getElementById('s-yp').value.trim();
+  var yr=document.getElementById('s-yr').value.trim();
+  var cab=document.getElementById('f-cab').value.trim();
+  var box=document.getElementById('f-box').value.trim();
+  var bill=document.getElementById('f-bill').value.trim();
+  var lop=document.getElementById('f-lop').value.trim();
+  var hasF=name||plate||loc||yp||yr||cab||box||bill||lop;
+  if(!hasF){DISP=[].concat(ALLDATA);renderRows(DISP);return;}
+  var r=ALLDATA.filter(function(row){
+    if(name&&row.name.indexOf(name)<0)return false;
+    if(plate&&row.plate.indexOf(plate)<0)return false;
+    if(loc&&row.loc.indexOf(loc)<0)return false;
+    if(yp&&row.yardP.indexOf(yp)<0)return false;
+    if(yr&&row.yardR.indexOf(yr)<0)return false;
+    if(cab&&row.cab.indexOf(cab)<0)return false;
+    if(box&&row.box.indexOf(box)<0)return false;
+    if(bill&&row.bill.indexOf(bill)<0)return false;
+    if(lop&&row.lop.indexOf(lop)<0)return false;
+    return true;
+  });
+  if(!r.length){showToast('暂无相关信息，请重新输入','warn');DISP=[];renderRows([]);}
+  else{DISP=r;renderRows(r);showToast('共找到 '+r.length+' 条记录','ok');}
+}
+
+function doReset(){
+  ['s-name','s-plate','s-loc','s-yp','s-yr'].forEach(function(id){document.getElementById(id).value='';});
+  ['f-cab','f-box','f-bill','f-lop','f-d1','f-d2'].forEach(function(id){document.getElementById(id).value='';});
+  DISP=[].concat(ALLDATA);renderRows(DISP);
+}
+
+function doExport(){showToast('任务已加载，请至下载列表进行操作','ok');}
+
+var DL_TASKS=[
+  {type:'海运费用导出',status:'处理完成',time:'2026-05-08 17:03:53',result:'处理完成',dl:true},
+  {type:'报关基础信息导入',status:'处理完成',time:'2026-05-08 15:27:46',result:'报关基础信息导入成功',dl:false},
+  {type:'海运费用导出',status:'处理完成',time:'2026-05-08 13:17:30',result:'处理完成',dl:true},
+  {type:'司机费用明细导入',status:'处理完成',time:'2026-05-07 09:15:22',result:'司机费用明细导入成功',dl:false},
+  {type:'海运费用导出',status:'处理完成',time:'2026-05-06 14:33:11',result:'处理完成',dl:true},
+  {type:'海运费用导出',status:'处理完成',time:'2026-05-05 10:08:44',result:'处理完成',dl:true}
+];
+var dlPanelOpen=false;
+
+function renderDlTasks(filter){
+  var list=filter?DL_TASKS.filter(function(t){
+    if(filter==='all')return true;
+    if(filter==='export')return t.type.indexOf('导出')>=0;
+    if(filter==='import')return t.type.indexOf('导入')>=0;
+    return true;
+  }):DL_TASKS;
+  var html='';
+  for(var i=0;i<list.length;i++){
+    var t=list[i];
+    html+='<tr>'+
+      '<td>'+t.type+'</td>'+
+      '<td>'+t.status+'</td>'+
+      '<td>'+t.time+'</td>'+
+      '<td>'+t.result+'</td>'+
+      '<td>'+ (t.dl ? '<span class="dl-dl-link" onclick="showToast(\'正在下载文件…\',\'ok\')">下载文件</span>' : '\u2014') +'</td>'+
+    '</tr>';
+  }
+  document.getElementById('dlTaskList').innerHTML=html;
+  document.getElementById('dlPgInfo').textContent='共 '+list.length+' 条';
+}
+
+function filterDlTasks(mode){
+  var sel=document.getElementById('dlFilterType').value;
+  if(mode==='all')renderDlTasks('all');
+  else renderDlTasks(sel||null);
+}
+
+function toggleDlPanel(){
+  dlPanelOpen=!dlPanelOpen;
+  document.getElementById('dlPanel').classList.toggle('open',dlPanelOpen);
+  closeNavDl();
+  if(dlPanelOpen)renderDlTasks();
+}
+function closeDlPanel(){dlPanelOpen=false;document.getElementById('dlPanel').classList.remove('open');}
+
+var NAVDL_FILES=[
+  {name:'海运费用登记表 (8).xlsx',date:'2025-05-22'},
+  {name:'海运费用登记表 (7).xlsx',date:'2025-05-20'},
+  {name:'海运费用登记表 (6).xlsx',date:'2025-05-18'},
+  {name:'司机费用明细导入模板.xlsx',date:'2025-05-15'},
+  {name:'海运费用登记表 (5).xlsx',date:'2025-05-12'},
+  {name:'结算单汇总_2025-05.xlsx',date:'2025-05-08'}
+];
+var navdlExpanded=false;
+var navdlPanelOpen=false;
+
+function renderNavDlList(){
+  var list=document.getElementById('navDlList');
+  var shown=navdlExpanded?NAVDL_FILES:NAVDL_FILES.slice(0,3);
+  var html='';
+  for(var i=0;i<shown.length;i++){
+    var f=shown[i];
+    html+='<div class="navdl-item" id="ndli'+i+'">'+
+      '<div class="navdl-icon">X</div>'+
+      '<div class="navdl-info">'+
+        '<div class="navdl-name" title="'+f.name+'">'+f.name+'</div>'+
+        '<div class="navdl-sub" onclick="openExcel(\''+f.name+'\')">打开文件</div>'+
+      '</div>'+
+    '</div>';
+  }
+  list.innerHTML=html;
+  document.getElementById('navDlMoreBtn').textContent=navdlExpanded?'收起':'查看更多';
+}
+
+function toggleNavDlMore(){navdlExpanded=!navdlExpanded;renderNavDlList();}
+function toggleNavDl(){
+  navdlPanelOpen=!navdlPanelOpen;
+  document.getElementById('navDlPanel').classList.toggle('open',navdlPanelOpen);
+  closeDlPanel();
+  if(navdlPanelOpen)renderNavDlList();
+}
+function closeNavDl(){navdlPanelOpen=false;document.getElementById('navDlPanel').classList.remove('open');}
+
+function doTpl(){
+  var today=new Date().toLocaleDateString('zh-CN').replace(/\//g,'-');
+  var newFile={name:'司机费用明细导入模板_'+today+'.xlsx',date:new Date().toISOString().slice(0,10)};
+  var found=false;
+  for(var i=0;i<NAVDL_FILES.length;i++){if(NAVDL_FILES[i].name===newFile.name){found=true;break;}}
+  if(!found)NAVDL_FILES.unshift(newFile);
+  document.getElementById('navDlBtn').style.display='inline-flex';
+  navdlPanelOpen=true;navdlExpanded=false;
+  document.getElementById('navDlPanel').classList.add('open');
+  renderNavDlList();
+  showToast('模板下载任务已加载','ok');
+}
+
+document.addEventListener('click',function(e){
+  var dlP=document.getElementById('dlPanel');
+  var dlT=document.getElementById('dlTrigger');
+  if(dlPanelOpen&&!dlP.contains(e.target)&&!dlT.contains(e.target)){closeDlPanel();}
+  var navP=document.getElementById('navDlPanel');
+  var navB=document.getElementById('navDlBtn');
+  if(navdlPanelOpen&&!navP.contains(e.target)&&!navB.contains(e.target)){closeNavDl();}
+});
+
+function openModal(){document.getElementById('imodal').classList.add('open');}
+function closeModal(){document.getElementById('imodal').classList.remove('open');}
+function openExcel(name){showToast('正在打开：'+name,'ok');}
+function onImport(inp){
+  if(inp.files&&inp.files[0]){
+    var name=inp.files[0].name;
+    closeModal();
+    NAVDL_FILES.unshift({name:name,date:new Date().toISOString().slice(0,10)});
+    document.getElementById('navDlBtn').style.display='inline-flex';
+    showToast('导入成功：'+name,'ok');
+    inp.value='';
+  }
+}
+document.getElementById('imodal').addEventListener('click',function(e){if(e.target===document.getElementById('imodal'))closeModal();});
+
+var tt=null;
+function showToast(msg,type){
+  var t=document.getElementById('toast');
+  t.className='toast '+type;
+  document.getElementById('tmsg').textContent=msg;
+  t.querySelector('.ti').textContent=type==='ok'?'\u2713':'\u26A0';
+  t.classList.add('show');
+  clearTimeout(tt);
+  tt=setTimeout(function(){t.classList.remove('show')},2800);
+}
+
+var curP=1;
+function totP(){return Math.max(1,Math.ceil(ALLDATA.length/30));}
+function renderPg(){
+  var tp=totP();var c=document.getElementById('pgNums');
+  var ps=[1];
+  if(curP>4)ps.push('\u2026');
+  for(var i=Math.max(2,curP-2);i<=Math.min(tp-1,curP+2);i++)ps.push(i);
+  if(curP<tp-3)ps.push('\u2026');
+  if(tp>1)ps.push(tp);
+  var html='';
+  for(var j=0;j<ps.length;j++){
+    var p=ps[j];
+    if(p===String.fromCharCode(8226)||p==='…')html+='<span style="display:flex;align-items:center;padding:0 3px;color:#9ca3af">\u2026</span>';
+    else html+='<button class="pgb'+(p===curP?' on':'')+'" onclick="goP('+p+')">'+p+'</button>';
+  }
+  c.innerHTML=html;
+}
+function goP(p){curP=Math.max(1,Math.min(totP(),p));document.getElementById('jmpI').value=curP;renderPg();}
+document.getElementById('prevB').onclick=function(){goP(curP-1);};
+document.getElementById('nextB').onclick=function(){goP(curP+1);};
+document.getElementById('jmpB').onclick=function(){goP(parseInt(document.getElementById('jmpI').value)||1);};
+
+document.getElementById('g1').colSpan=3;
+renderRows(ALLDATA);
+renderPg();
+</script>
+</body>
+</html>
