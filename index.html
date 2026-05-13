@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<title>司机应付 — 星商物流头程中心</title>
+<title>万拓高头程运费（应付）— 物流头程中心</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:13px;background:#f0f2f5;color:#333;display:flex;flex-direction:column;height:100vh;overflow:hidden}
@@ -106,7 +106,7 @@ th.hd,th.hdf{display:none}th.hd.v,th.hdf.v{display:table-cell}
 .mcancel-wrap{background:rgba(20,184,166,.3);border-radius:5px;padding:4px 10px}
 .mcancel{color:#14b8a6;font-size:13px;cursor:pointer;font-weight:500;background:none;border:none}
 .mcancel:hover{color:#0d9488}
-.dl-panel{position:fixed;top:48px;right:0;width:520px;background:#fff;border:1px solid #e5e7eb;border-radius:0 0 0 0;box-shadow:0 8px 24px rgba(0,0,0,.14);z-index:700;display:none;flex-direction:column}
+.dl-panel{position:fixed;top:48px;right:0;width:680px;max-height:calc(100vh - 48px);background:#fff;border:1px solid #e5e7eb;border-left:1px solid #e5e7eb;box-shadow:-4px 0 24px rgba(0,0,0,.14);z-index:700;display:none;flex-direction:column;overflow:hidden}
 .dl-panel.open{display:flex}
 .dl-filter{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid #e5e7eb}
 .dl-filter-label{font-size:12px;color:#374151}
@@ -148,6 +148,46 @@ th.hd,th.hdf{display:none}th.hd.v,th.hdf.v{display:table-cell}
 ::-webkit-scrollbar-track{background:#f9fafb}
 ::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:3px}
 ::-webkit-scrollbar-thumb:hover{background:#9ca3af}
+
+/* 其他费用 Dialog */
+.fee-dialog-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1200;display:none;align-items:center;justify-content:center}
+.fee-dialog-overlay.open{display:flex}
+.fee-dialog{background:#fff;border-radius:12px;width:440px;max-width:96vw;box-shadow:0 12px 40px rgba(0,0,0,.2);overflow:hidden;max-height:80vh;display:flex;flex-direction:column}
+.fee-dialog-head{padding:18px 22px 14px;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.fee-dialog-title{font-size:15px;font-weight:700;color:#111}
+.fee-dialog-close{width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:6px;color:#9ca3af;border:none;background:none}
+.fee-dialog-close:hover{background:#f3f4f6;color:#374151}
+.fee-dialog-body{padding:18px 22px;overflow-y:auto;flex:1}
+.fee-table-header{display:flex;align-items:center;margin-bottom:10px}
+.fee-col-name{flex:1;font-size:12px;font-weight:600;color:#6b7280;padding-left:2px}
+.fee-col-amount{width:160px;font-size:12px;font-weight:600;color:#6b7280;text-align:right;padding-right:2px}
+.fee-summary-row{display:flex;align-items:center;margin-bottom:14px;padding:10px 12px;background:#f0fdf4;border-radius:8px;border:1px solid #a7f3d0}
+.fee-summary-label{flex:1;font-size:13px;font-weight:600;color:#0f766e}
+.fee-summary-input{width:160px;height:30px;border:1px solid #a7f3d0;border-radius:6px;padding:0 10px;font-size:13px;font-weight:600;color:#0f766e;text-align:right;outline:none;background:#fff}
+.fee-summary-input:focus{border-color:#14b8a6;box-shadow:0 0 0 2px rgba(20,184,166,.15)}
+.fee-item-row{display:flex;align-items:center;padding:9px 12px;border-radius:7px;border:1px solid #f3f4f6;margin-bottom:8px;background:#fafafa;gap:8px}
+.fee-item-row:last-of-type{margin-bottom:0}
+.fee-item-name{flex:1;font-size:13px;color:#374151}
+.fee-item-amount{font-size:13px;font-weight:500;color:#0f766e;min-width:120px;text-align:right}
+.fee-add-section{margin-top:16px;padding-top:14px;border-top:1px dashed #e5e7eb}
+.fee-add-btn-row{display:flex;align-items:center;gap:8px;cursor:pointer;width:fit-content;user-select:none}
+.fee-add-circle{width:28px;height:28px;border-radius:50%;background:#16a34a;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s}
+.fee-add-btn-row:hover .fee-add-circle{background:#15803d}
+.fee-add-circle svg{width:14px;height:14px}
+.fee-add-label{font-size:13px;color:#16a34a;font-weight:500}
+.fee-add-btn-row:hover .fee-add-label{color:#15803d}
+.fee-new-inputs{display:none;margin-top:12px;gap:8px;flex-direction:column}
+.fee-new-inputs.open{display:flex}
+.fee-new-row{display:flex;gap:8px;align-items:center}
+.fee-new-input{height:32px;border:1px solid #d1d5db;border-radius:6px;padding:0 10px;font-size:13px;color:#374151;outline:none;background:#fff}
+.fee-new-input:focus{border-color:#14b8a6;box-shadow:0 0 0 2px rgba(20,184,166,.12)}
+.fee-new-input.name-inp{flex:1;min-width:0}
+.fee-new-input.amt-inp{width:130px}
+.fee-confirm-btn{height:32px;padding:0 14px;background:#14b8a6;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;white-space:nowrap}
+.fee-confirm-btn:hover{background:#0d9488}
+.fee-dialog-footer{padding:12px 22px 16px;border-top:1px solid #e5e7eb;display:flex;justify-content:flex-end;flex-shrink:0}
+.fee-footer-close{height:32px;padding:0 20px;background:#f3f4f6;color:#374151;border:none;border-radius:6px;font-size:13px;cursor:pointer;font-weight:500}
+.fee-footer-close:hover{background:#e5e7eb}
 </style>
 </head>
 <body>
@@ -155,7 +195,11 @@ th.hd,th.hdf{display:none}th.hd.v,th.hdf.v{display:table-cell}
 <div class="toast ok" id="toast"><span class="ti">✓</span><span id="tmsg"></span></div>
 
 <div class="dl-panel" id="dlPanel">
-  <div class="dl-filter">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px 10px;border-bottom:1px solid #e5e7eb;flex-shrink:0">
+    <span style="font-size:15px;font-weight:600;color:#111">下载列表</span>
+    <div class="dl-tclose" onclick="closeDlPanel()" title="关闭"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l8 8M12 4l-8 8"/></svg></div>
+  </div>
+  <div class="dl-filter" style="flex-shrink:0">
     <span class="dl-filter-label">任务类型</span>
     <select class="dl-filter-sel" id="dlFilterType">
       <option value="">请选择</option>
@@ -165,22 +209,21 @@ th.hd,th.hdf{display:none}th.hd.v,th.hdf.v{display:table-cell}
     <button class="dl-filter-btn" onclick="filterDlTasks()">查询</button>
     <button class="dl-filter-btn" style="background:#fff;color:#14b8a6;border:1px solid #14b8a6" onclick="filterDlTasks('all')">查看所有记录</button>
   </div>
-  <div class="dl-tbar">
-    <div class="dl-tclose" onclick="closeDlPanel()" title="关闭"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l8 8M12 4l-8 8"/></svg></div>
+  <div style="flex:1;overflow-y:auto;">
+    <table class="dl-table" style="width:100%">
+      <thead>
+        <tr>
+          <th style="width:160px">任务类型</th>
+          <th style="width:90px">任务状态</th>
+          <th style="width:165px">完成时间</th>
+          <th style="width:180px">处理结果</th>
+          <th style="width:110px;text-align:center">处理结果下载</th>
+        </tr>
+      </thead>
+      <tbody id="dlTaskList"></tbody>
+    </table>
   </div>
-  <table class="dl-table">
-    <thead>
-      <tr>
-        <th>任务类型</th>
-        <th>任务状态</th>
-        <th>完成时间</th>
-        <th>处理结果</th>
-        <th>处理结果下载</th>
-      </tr>
-    </thead>
-    <tbody id="dlTaskList"></tbody>
-  </table>
-  <div class="dl-pgbar">
+  <div class="dl-pgbar" style="flex-shrink:0">
     <div class="dl-pginfo" id="dlPgInfo">共 6 条</div>
   </div>
 </div>
@@ -198,6 +241,54 @@ th.hd,th.hdf{display:none}th.hd.v,th.hdf.v{display:table-cell}
   <div class="navdl-list" id="navDlList"></div>
   <div class="navdl-footer">
     <div class="navdl-more" id="navDlMoreBtn" onclick="toggleNavDlMore()">查看更多</div>
+  </div>
+</div>
+
+<!-- 其他费用 Dialog -->
+<div class="fee-dialog-overlay" id="feeDialog">
+  <div class="fee-dialog">
+    <div class="fee-dialog-head">
+      <span class="fee-dialog-title">其他费用明细</span>
+      <button class="fee-dialog-close" onclick="closeFeeDialog()">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+      </button>
+    </div>
+    <div class="fee-dialog-body">
+      <!-- 表头 -->
+      <div class="fee-table-header">
+        <span class="fee-col-name">费用名称</span>
+        <span class="fee-col-amount">金额</span>
+      </div>
+      <!-- 汇总行 -->
+      <div class="fee-summary-row">
+        <span class="fee-summary-label">汇总 <span style="font-size:11px;font-weight:400;color:#6b7280">（自动计算）</span></span>
+        <input class="fee-summary-input" id="feeSummaryInput" type="text" placeholder="—" readonly style="cursor:default;background:#f0fdf4">
+      </div>
+      <!-- 固定费用列表 -->
+      <div id="feeItemList"></div>
+      <!-- 新增费用区域 -->
+      <div class="fee-add-section">
+        <div class="fee-add-btn-row" onclick="toggleFeeAddInput()">
+          <div class="fee-add-circle">
+            <svg id="feeAddIcon" viewBox="0 0 14 14" fill="none" width="14" height="14">
+              <line x1="7" y1="2" x2="7" y2="12" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+              <line x1="2" y1="7" x2="12" y2="7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="fee-add-label">添加费用</span>
+        </div>
+        <div class="fee-new-inputs" id="feeNewInputs">
+          <div class="fee-new-row">
+            <input class="fee-new-input name-inp" id="newFeeName" type="text" placeholder="费用名称（如：停车费）">
+            <input class="fee-new-input amt-inp" id="newFeeAmt" type="number" placeholder="金额 CNY" step="0.001" min="0">
+            <button class="fee-confirm-btn" onclick="addNewFeeItem()">确认添加</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fee-dialog-footer">
+      <button class="fee-footer-close" onclick="closeFeeDialog()">关闭</button>
+    </div>
   </div>
 </div>
 
@@ -232,10 +323,10 @@ th.hd,th.hdf{display:none}th.hd.v,th.hdf.v{display:table-cell}
       <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h10M8 2v8M5 7l3 3 3-3"/></svg>
       下载列表
     </button>
-    <button class="tbtn teal" id="navDlBtn" onclick="toggleNavDl()" style="position:relative;display:none">
+    <button class="tbtn teal">消息中心</button>
+    <button class="tbtn teal" id="navDlBtn" onclick="toggleNavDl()" style="position:relative;display:none" title="导入模板下载记录">
       <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h10M8 2v8M5 7l3 3 3-3"/></svg>
     </button>
-    <button class="tbtn teal">消息中心</button>
     <div class="uav">李</div>
   </div>
 </div>
@@ -262,7 +353,7 @@ th.hd,th.hdf{display:none}th.hd.v,th.hdf.v{display:table-cell}
     <div class="mg">
       <div class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 2h12v12H2z"/><path d="M6 2v12M2 6h12"/></svg>海运费用</div>
       <div class="mi sub">海运运费</div>
-      <div class="mi sub on">万拓高头程运费</div>
+      <div class="mi sub on">万拓高头程运费（应付）</div>
     </div>
     <div class="mg">
       <div class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12V4h12v8"/><path d="M8 4v8M5 8h6"/></svg>物流报表</div>
@@ -278,29 +369,26 @@ th.hd,th.hdf{display:none}th.hd.v,th.hdf.v{display:table-cell}
     <div class="sbar">
       <div class="bc">
         <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
-        <span>头程总单</span><span class="sep">/</span><span style="color:#14b8a6">司机应付</span>
+        <span>物流头程中心</span><span class="sep">/</span><span>头程管理</span><span class="sep">/</span><span style="color:#14b8a6">万拓高头程运费（应付）</span>
       </div>
       <div class="tabs">
-        <div class="tab">dashboard</div>
-        <div class="tab on">司机应付 <span class="tx">×</span></div>
-        <div class="tab">拼箱的管理 <span class="tx">×</span></div>
-        <div class="tab">头程单的管理 <span class="tx">×</span></div>
+        <div class="tab on">万拓高头程运费（应付）<span class="tx">×</span></div>
       </div>
     </div>
 
     <div class="sa">
       <div class="frow">
         <div class="fc"><span class="flabel">系统柜号</span><input type="text" class="fi" style="width:155px" id="f-cab" placeholder="支持多个，逗号隔开"></div>
-        <div class="fc"><span class="flabel">集装箱号</span><input type="text" class="fi" style="width:155px" id="f-box" placeholder="支持多个，逗号隔开"></div>
-        <div class="fc"><span class="flabel">提运单号</span><input type="text" class="fi" style="width:155px" id="f-bill" placeholder="支持多个，逗号隔开"></div>
-        <div class="fc"><span class="flabel">物流操作人员</span><input type="text" class="fi" style="width:140px" id="f-lop" placeholder="支持多个，逗号隔开"></div>
-      </div>
-      <div class="frow">
         <div class="fc"><span class="flabel">司机姓名</span>
           <div class="sdw"><input class="sdi" id="s-name" placeholder="请选择/输入" autocomplete="off"
             oninput="filterDD('s-name','d-name',NAMES)" onfocus="openDD('s-name','d-name',NAMES)" onblur="delayClose('d-name')">
             <svg class="sdarr" width="10" height="6" viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z" fill="#9ca3af"/></svg>
             <div class="sdd" id="d-name"></div></div></div>
+        <div class="fc"><span class="flabel">集装箱号</span><input type="text" class="fi" style="width:155px" id="f-box" placeholder="支持多个，逗号隔开"></div>
+        <div class="fc"><span class="flabel">提运单号</span><input type="text" class="fi" style="width:155px" id="f-bill" placeholder="支持多个，逗号隔开"></div>
+        <div class="fc"><span class="flabel">物流操作人员</span><input type="text" class="fi" style="width:140px" id="f-lop" placeholder="支持多个，逗号隔开"></div>
+      </div>
+      <div class="frow">
         <div class="fc"><span class="flabel">车牌号</span>
           <div class="sdw"><input class="sdi" id="s-plate" placeholder="请选择/输入" autocomplete="off"
             oninput="filterDD('s-plate','d-plate',PLATES)" onfocus="openDD('s-plate','d-plate',PLATES)" onblur="delayClose('d-plate')">
@@ -337,8 +425,8 @@ th.hd,th.hdf{display:none}th.hd.v,th.hdf.v{display:table-cell}
         <button class="abtn exp" onclick="doExport()">
           <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h10M8 2v8M5 7l3 3 3-3"/></svg>导出
         </button>
-        <button class="abtn tpl" onclick="doTpl()">
-          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="1"/><path d="M5 8h6M8 5v6"/></svg>导入模板下载
+        <button class="abtn tpl">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h10M8 2v8M5 7l3 3 3-3"/></svg>导入模板下载
         </button>
         <button class="abtn imp" onclick="openModal()">
           <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h10M8 10V2M5 5l3-3 3 3"/></svg>导入
@@ -385,7 +473,6 @@ th.hd,th.hdf{display:none}th.hd.v,th.hdf.v{display:table-cell}
               <th class="hd hdf" style="min-width:62px;width:62px">封条费</th>
               <th class="hd hdf" style="min-width:62px;width:62px">停车费</th>
               <th class="hd hdf" style="min-width:90px;width:90px;font-weight:600">其他费用</th>
-              <th class="hd hdf" style="min-width:100px;width:100px">其他费用备注</th>
             </tr>
           </thead>
           <tbody id="TB"></tbody>
@@ -423,14 +510,35 @@ function pk(a,i){return a[i%a.length];}
 function fa(n){if(!n)return'<span class="dash">\u2014</span>';return'<span class="amt">'+n.toFixed(3)+'\u2009CNY</span>';}
 function fd(n){if(!n)return'<span class="dash">\u2014</span>';return'<span class="amtn">-'+n.toFixed(3)+'\u2009CNY</span>';}
 
+function renderLocTags(locStr){
+  var parts=locStr.split('+');
+  if(parts.length===1) return '<span class="muted">'+locStr+'</span>';
+  return parts.map(function(p){
+    return '<span style="display:inline-block;background:#f0fdf4;border:1px solid #a7f3d0;border-radius:3px;padding:1px 5px;font-size:11px;color:#0f766e;margin:1px 2px;white-space:nowrap">'+p.trim()+'</span>';
+  }).join('<span style="color:#9ca3af;font-size:11px;margin:0 1px">+</span>');
+}
+
 var ALLDATA=Array.from({length:30},function(_,i){
   var f={ji:rf(),zeng:rf(),yi:rf(),ya:rf(),guo:rf(),chao:rf(),feng:rf(),ting:rf()};
   var fSum=f.ji+f.zeng+f.yi+f.ya+f.guo+f.chao+f.feng+f.ting;
   var o={lujiao:rf(),ranyou:rf(),weixiu:rf(),za:rf()};
   var oSum=o.lujiao+o.ranyou+o.weixiu+o.za;
-  return{no:i+1,bill:'BL-25'+String(i+1000).padStart(5,'0'),cab:'G'+String(i+10000),
+  // 部分行生成多个装柜地点（约1/3的行）
+  var locVal;
+  if(i%3===1){
+    locVal=pk(LOCS,i)+'+'+pk(LOCS,i+2);
+  } else if(i%7===0){
+    locVal=pk(LOCS,i)+'+'+pk(LOCS,i+1)+'+'+pk(LOCS,i+3);
+  } else {
+    locVal=pk(LOCS,i);
+  }
+  var cabSuffixes=['US','UK','DE','CA','AU','JP','FR','SG','NL','KR'];
+  var cabMonth=String(Math.floor(i/10)+5).padStart(2,'0');
+  var cabDay=String((i%10)*3+1).padStart(2,'0');
+  var cabNo='ZG26-'+cabMonth+cabDay+'-'+cabSuffixes[i%cabSuffixes.length];
+  return{no:i+1,bill:'BL-25'+String(i+1000).padStart(5,'0'),cab:cabNo,
     box:'MSCU'+rnd(1000000,9999999),name:pk(NAMES,i),plate:pk(PLATES,i),
-    yardP:pk(YARDS,i),yardR:pk(YARDS,i+1),outerYard:pk(OUTER_YARDS,i),loc:pk(LOCS,i),route:pk(ROUTES,i),
+    yardP:pk(YARDS,i),yardR:pk(YARDS,i+1),outerYard:pk(OUTER_YARDS,i),loc:locVal,route:pk(ROUTES,i),
     time:pk(TIMES,i),lop:pk(LOPS,i),
     fSum:fSum+oSum,ji:f.ji,zeng:f.zeng,yi:f.yi,ya:f.ya,guo:f.guo,chao:f.chao,feng:f.feng,ting:f.ting,
     oSum:oSum,lujiao:o.lujiao,ranyou:o.ranyou,weixiu:o.weixiu,za:o.za};
@@ -449,7 +557,12 @@ function filterDD(sid,did,opts){openDD(sid,did,opts);}
 function delayClose(did){setTimeout(function(){document.getElementById(did).classList.remove('open')},280);}
 function pickDD(sid,did,val){document.getElementById(sid).value=val;document.getElementById(did).classList.remove('open');}
 
-function toggleAll(cb){document.querySelectorAll('tbody .cb').forEach(function(c){c.checked=cb.checked});}
+function toggleAll(cb){document.querySelectorAll('tbody .cb').forEach(function(c){c.checked=cb.checked;});}
+
+function clearAllChecks(){
+  document.querySelectorAll('tbody .cb').forEach(function(c){c.checked=false;});
+  document.getElementById('cbAll').checked=false;
+}
 
 var fOpen=false;
 function setHDF(v){document.querySelectorAll('th.hdf,td.hdf').forEach(function(el){el.classList.toggle('v',v);});}
@@ -458,7 +571,7 @@ function toggleFee(e){
   e.stopPropagation();
   fOpen=!fOpen;
   setHDF(fOpen);
-  document.getElementById('g1').colSpan=fOpen?13:3;
+  document.getElementById('g1').colSpan=fOpen?12:3;
   document.getElementById('fvl').style.display=fOpen?'none':'';
 }
 
@@ -468,6 +581,16 @@ function reVis(){
 
 function renderRows(data){
   var html='';
+  if(!data||data.length===0){
+    var colCount=fOpen?25:15;
+    html='<tr><td colspan="'+colCount+'" style="text-align:center;padding:48px 0;color:#9ca3af;font-size:14px;">'+
+      '<div style="display:flex;flex-direction:column;align-items:center;gap:10px">'+
+      '<svg width="48" height="48" viewBox="0 0 64 64" fill="none" stroke="#d1d5db" stroke-width="2"><rect x="8" y="8" width="48" height="48" rx="4"/><path d="M20 32h24M20 22h24M20 42h16"/></svg>'+
+      '<span>暂无相关数据</span></div></td></tr>';
+    document.getElementById('TB').innerHTML=html;
+    document.getElementById('pginfo').innerHTML='共 <strong>0</strong> 条';
+    return;
+  }
   for(var i=0;i<data.length;i++){
     var row=data[i];
     html+='<tr>'+
@@ -480,7 +603,7 @@ function renderRows(data){
       '<td class="muted">'+row.yardP+'</td>'+
       '<td class="muted">'+row.yardR+'</td>'+
       '<td class="muted">'+row.outerYard+'</td>'+
-      '<td class="muted">'+row.loc+'</td>'+
+      '<td style="text-align:center;padding:4px 6px;white-space:normal;min-width:120px">'+renderLocTags(row.loc)+'</td>'+
       '<td>'+row.route+'</td>'+
       '<td>'+row.lop+'</td>'+
       '<td>'+row.name+'</td>'+
@@ -494,8 +617,9 @@ function renderRows(data){
       '<td class="hd hdf">'+fa(row.chao)+'</td>'+
       '<td class="hd hdf">'+fa(row.feng)+'</td>'+
       '<td class="hd hdf">'+fa(row.ting)+'</td>'+
-      '<td class="hd hdf">'+fa(row.oSum)+'</td>'+
-      '<td class="hd hdf" style="text-align:left;padding:4px 6px"><input type="text" class="oremark" data-no="'+row.no+'" placeholder="路桥节约费、燃油节约费等" style="width:100%;height:22px;border:1px solid #d1d5db;border-radius:3px;font-size:12px;padding:2px 6px;color:#374151;outline:none" onfocus="this.style.borderColor=\'#14b8a6\'" onblur="this.style.borderColor=\'#d1d5db\'"></td>'+
+      '<td class="hd hdf"><span class="amt" style="cursor:pointer;text-decoration:underline dotted" onclick="openOtherFeeDialog('+row.no+','+row.oSum+','+row.lujiao+','+row.ranyou+')" title="点击查看费用明细">'+
+        (row.oSum?row.oSum.toFixed(3)+'\u2009CNY':'—')+
+      '</span></td>'+
     '</tr>';
   }
   document.getElementById('TB').innerHTML=html;
@@ -521,11 +645,11 @@ function doSearch(){
   var bill=document.getElementById('f-bill').value.trim();
   var lop=document.getElementById('f-lop').value.trim();
   var hasF=name||plate||loc||yp||yr||cab||box||bill||lop;
-  if(!hasF){DISP=[].concat(ALLDATA);renderRows(DISP);return;}
+  if(!hasF){showToast('请填写筛选信息','warn');return;}
   var r=ALLDATA.filter(function(row){
     if(name&&row.name.indexOf(name)<0)return false;
     if(plate&&row.plate.indexOf(plate)<0)return false;
-    if(loc&&row.loc.indexOf(loc)<0)return false;
+    if(loc&&!row.loc.split('+').some(function(l){return l.indexOf(loc)>=0;}))return false;
     if(yp&&row.yardP.indexOf(yp)<0)return false;
     if(yr&&row.yardR.indexOf(yr)<0)return false;
     if(cab&&row.cab.indexOf(cab)<0)return false;
@@ -534,17 +658,22 @@ function doSearch(){
     if(lop&&row.lop.indexOf(lop)<0)return false;
     return true;
   });
-  if(!r.length){showToast('暂无相关信息，请重新输入','warn');DISP=[];renderRows([]);}
-  else{DISP=r;renderRows(r);showToast('共找到 '+r.length+' 条记录','ok');}
+  if(!r.length){showToast('暂无相关信息，请重新输入','warn');DISP=[];renderRows([]);clearAllChecks();}
+  else{DISP=r;renderRows(r);showToast('共找到 '+r.length+' 条记录','ok');clearAllChecks();}
 }
 
 function doReset(){
   ['s-name','s-plate','s-loc','s-yp','s-yr'].forEach(function(id){document.getElementById(id).value='';});
   ['f-cab','f-box','f-bill','f-lop','f-d1','f-d2'].forEach(function(id){document.getElementById(id).value='';});
+  clearAllChecks();
   DISP=[].concat(ALLDATA);renderRows(DISP);
 }
 
-function doExport(){showToast('任务已加载，请至下载列表进行操作','ok');}
+function doExport(){
+  var checked=document.querySelectorAll('tbody .cb:checked');
+  if(checked.length===0){showToast('请勾选要导出的数据','warn');return;}
+  showToast('任务已加载，请至下载列表进行操作','ok');
+}
 
 var DL_TASKS=[
   {type:'海运费用导出',status:'处理完成',time:'2026-05-08 17:03:53',result:'处理完成',dl:true},
@@ -675,7 +804,7 @@ function showToast(msg,type){
   t.querySelector('.ti').textContent=type==='ok'?'\u2713':'\u26A0';
   t.classList.add('show');
   clearTimeout(tt);
-  tt=setTimeout(function(){t.classList.remove('show')},2800);
+  tt=setTimeout(function(){t.classList.remove('show')},2500);
 }
 
 var curP=1;
@@ -699,6 +828,100 @@ function goP(p){curP=Math.max(1,Math.min(totP(),p));document.getElementById('jmp
 document.getElementById('prevB').onclick=function(){goP(curP-1);};
 document.getElementById('nextB').onclick=function(){goP(curP+1);};
 document.getElementById('jmpB').onclick=function(){goP(parseInt(document.getElementById('jmpI').value)||1);};
+
+// ===== 其他费用 Dialog =====
+var currentFeeRowNo=null;
+var feeAddOpen=false;
+var feeItems={}; // 按行号存储自定义费用列表
+var currentFeeFixed=[]; // 当前行的固定费用
+
+function calcFeeTotal(){
+  var row=null;
+  for(var i=0;i<ALLDATA.length;i++){if(ALLDATA[i].no===currentFeeRowNo){row=ALLDATA[i];break;}}
+  var fixedSum=0;
+  var custom=feeItems[currentFeeRowNo]||[];
+  var customSum=0;
+  for(var j=0;j<custom.length;j++) customSum+=custom[j].amount;
+  return fixedSum+customSum;
+}
+
+function updateSummary(){
+  var total=calcFeeTotal();
+  var input=document.getElementById('feeSummaryInput');
+  input.value=total.toFixed(3);
+  // 颜色提示：负数红色，正数绿色
+  input.style.color=total<0?'#ef4444':'#0f766e';
+}
+
+function openOtherFeeDialog(rowNo, oSum, lujiao, ranyou){
+  currentFeeRowNo=rowNo;
+  currentFeeFixed=[];
+  if(!feeItems[currentFeeRowNo]) feeItems[currentFeeRowNo]=[];
+  renderFeeItems();
+  updateSummary();
+  feeAddOpen=false;
+  document.getElementById('feeNewInputs').classList.remove('open');
+  document.getElementById('newFeeName').value='';
+  document.getElementById('newFeeAmt').value='';
+  // 重置加号图标
+  setFeeAddIcon(false);
+  document.getElementById('feeDialog').classList.add('open');
+}
+
+function renderFeeItems(){
+  var custom=feeItems[currentFeeRowNo]||[];
+  var all=currentFeeFixed.concat(custom);
+  var html='';
+  for(var i=0;i<all.length;i++){
+    var item=all[i];
+    var amtCls=item.amount<0?'color:#ef4444':'color:#0f766e';
+    var sign=item.amount<0?'':'+';
+    html+='<div class="fee-item-row">'+
+      '<span class="fee-item-name">'+item.name+'</span>'+
+      '<span class="fee-item-amount" style="'+amtCls+'">'+item.amount.toFixed(3)+'\u2009CNY</span>'+
+    '</div>';
+  }
+  document.getElementById('feeItemList').innerHTML=html;
+}
+
+function closeFeeDialog(){
+  document.getElementById('feeDialog').classList.remove('open');
+  currentFeeRowNo=null;
+}
+
+function setFeeAddIcon(isMinus){
+  var svg=document.getElementById('feeAddIcon');
+  if(isMinus){
+    svg.innerHTML='<line x1="2" y1="7" x2="12" y2="7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>';
+  } else {
+    svg.innerHTML='<line x1="7" y1="2" x2="7" y2="12" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><line x1="2" y1="7" x2="12" y2="7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>';
+  }
+}
+
+function toggleFeeAddInput(){
+  feeAddOpen=!feeAddOpen;
+  document.getElementById('feeNewInputs').classList.toggle('open',feeAddOpen);
+  setFeeAddIcon(feeAddOpen);
+  if(feeAddOpen) document.getElementById('newFeeName').focus();
+}
+
+function addNewFeeItem(){
+  var name=document.getElementById('newFeeName').value.trim();
+  var amt=parseFloat(document.getElementById('newFeeAmt').value);
+  if(!name){showToast('请输入费用名称','warn');return;}
+  if(isNaN(amt)){showToast('请输入有效金额（支持负数）','warn');return;}
+  if(!feeItems[currentFeeRowNo]) feeItems[currentFeeRowNo]=[];
+  feeItems[currentFeeRowNo].push({name:name,amount:amt});
+  renderFeeItems();
+  updateSummary();
+  document.getElementById('newFeeName').value='';
+  document.getElementById('newFeeAmt').value='';
+  showToast('费用已添加','ok');
+}
+
+document.getElementById('feeDialog').addEventListener('click',function(e){
+  if(e.target===document.getElementById('feeDialog')) closeFeeDialog();
+});
 
 document.getElementById('g1').colSpan=3;
 renderRows(ALLDATA);
