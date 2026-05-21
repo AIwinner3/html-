@@ -546,6 +546,14 @@ input[type=number]{-moz-appearance:textfield}
 
 <script>
 // ===== 基础数据 =====
+var drpStartVal=null;
+var drpEndVal=null;
+var drpPicking='start';
+var drpBaseMonth=new Date();
+drpBaseMonth.setDate(1);
+drpBaseMonth.setHours(0,0,0,0);
+var MONTH_NAMES=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+var WEEK_NAMES=['日','一','二','三','四','五','六'];
 var NAMES=['张三','李四','王五','赵六','孙七','周八','郑十','刘一','陈二','何四','朱五','吴六','冯七','许八','杨九'];
 var PLATES=['粤A12345','粤B23456','粤C34567','粤D45678','粤E56789','粤F67890','粤H89011','粤J90123','粤K01234','粤L12345','粤N34567','粤M45678','粤P56789','粤Q67890','粤R78901'];
 var YARDS=['盐田码头','蛇口码头','南沙码头','大铲湾弯头'];
@@ -643,8 +651,8 @@ function showFeeDialog(rowNo,el){
   var hasItems=items&&items.length>0;
   var total=getFeeTotal(rowNo);
   var totalCls=total<0?'neg':'';
-  var totalAmtCls=total<0?'neg':'pos';
-  var totalAmtStr=total<0?'<span style="color:#ef4444">'+total.toFixed(3)+'</span>':total.toFixed(3);
+  var totalAmtCls=hasItems?(total<0?'neg':'pos'):'';
+  var totalAmtStr=hasItems?(total<0?'<span style="color:#ef4444">'+total.toFixed(3)+'</span>':total.toFixed(3)):'-';
   var html='<div class="fee-tip-arrow"></div><div class="fee-tip-arrow-inner"></div>';
   html+='<div class="fee-tip-header '+totalCls+'"><span>合计</span><span class="fee-tip-amt '+totalAmtCls+'">'+totalAmtStr+'<span class="fee-tip-unit"> CNY</span></span></div>';
   if(hasItems){
@@ -688,9 +696,10 @@ function enterEditMode(rowNo){
   clearTimeout(feeDialogTimer);
   var dialog=document.getElementById('feeTip');
   var items=feeItems[rowNo]||[];
+  var hasItems=items&&items.length>0;
   var total=getFeeTotal(rowNo);
-  var totalCls=total<0?'neg':'pos';
-  var totalStr=total<0?'<span style="color:#ef4444">'+total.toFixed(3)+'</span>':total.toFixed(3);
+  var totalCls=hasItems?(total<0?'neg':'pos'):'';
+  var totalStr=hasItems?(total<0?'<span style="color:#ef4444">'+total.toFixed(3)+'</span>':total.toFixed(3)):'-';
   var html='<div class="fee-tip-arrow"></div><div class="fee-tip-arrow-inner"></div>';
   html+='<div class="fee-tip-header '+totalCls+'"><span>其他费用明细</span><span class="fee-tip-amt '+totalCls+'">合计：'+totalStr+'<span class="fee-tip-unit"> CNY</span></span></div>';
   html+='<div class="fee-tip-body">';
@@ -884,8 +893,8 @@ function doSearch(){
   var box=document.getElementById('f-box').value.trim();
   var bill=document.getElementById('f-bill').value.trim();
   var lop=document.getElementById('f-lop').value.trim();
-  var d1=document.getElementById('f-d1').value;
-  var d2=document.getElementById('f-d2').value;
+  var d1=drpStartVal;
+  var d2=drpEndVal;
   var hasF=name||plate||oy||yp||yr||cab||box||bill||lop||d1||d2;
   if(!hasF){showToast('请填写筛选信息','warn');return;}
   var r=ALLDATA.filter(function(row){
@@ -909,7 +918,8 @@ function doSearch(){
 
 function doReset(){
   ['s-name','s-plate','s-oy','s-yp','s-yr'].forEach(function(id){document.getElementById(id).value='';});
-  ['f-cab','f-box','f-bill','f-lop','f-d1','f-d2'].forEach(function(id){document.getElementById(id).value='';});
+  ['f-cab','f-box','f-bill','f-lop'].forEach(function(id){document.getElementById(id).value='';});
+  drpStartVal=null;drpEndVal=null;drpPicking='start';updateDRPDisplay();
   clearAllChecks();
   curP=1;
   DISP=[].concat(ALLDATA);renderRows(DISP);renderPg();
@@ -1342,16 +1352,6 @@ feeTipEl.addEventListener('mouseleave',function(){
 });
 
 // ===== 日期范围选择器 =====
-var drpStartVal=null;
-var drpEndVal=null;
-var drpPicking='start';
-var drpBaseMonth=new Date();
-drpBaseMonth.setDate(1);
-drpBaseMonth.setHours(0,0,0,0);
-
-var MONTH_NAMES=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
-var WEEK_NAMES=['日','一','二','三','四','五','六'];
-
 function openDRP(){
   var panel=document.getElementById('drpPanel');
   if(panel.classList.contains('open')){closeDRP();return;}
