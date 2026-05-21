@@ -53,6 +53,38 @@ body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-size:13px;backg
 .fi{height:28px;padding:0 8px;border:1px solid #d1d5db;border-radius:4px;font-size:12px;color:#374151;background:#fff;outline:none}
 .fi:focus{border-color:#14b8a6;box-shadow:0 0 0 2px rgba(20,184,166,.12)}
 .dw{display:flex;align-items:center;gap:4px}
+.date-range-wrap{display:flex;align-items:center;border:1px solid #d1d5db;border-radius:4px;background:#fff;overflow:hidden;height:28px;transition:border-color .15s,box-shadow .15s;cursor:pointer}
+.date-range-wrap:focus-within,.date-range-wrap.active{border-color:#14b8a6;box-shadow:0 0 0 2px rgba(20,184,166,.12)}
+.date-range-input{height:28px;border:none;padding:0 6px;font-size:12px;color:#374151;background:#fff;outline:none;width:116px;flex-shrink:0;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:28px;text-align:center}
+.date-range-input.empty{color:#9ca3af}
+.date-range-sep{font-size:12px;color:#9ca3af;padding:0 2px;flex-shrink:0}
+.drp{position:fixed;z-index:500;display:none;background:#fff;border:1px solid #d1d5db;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.15);padding:12px;width:480px}
+.drp.open{display:block}
+.drp-row{display:flex;gap:16px}
+.drp-month{flex:1;min-width:0}
+.drp-month-title{font-size:13px;font-weight:600;color:#374151;text-align:center;padding:4px 0 8px}
+.drp-week{display:flex;gap:0}
+.drp-week span{flex:1;text-align:center;font-size:11px;color:#9ca3af;padding:2px 0}
+.drp-days{display:flex;flex-wrap:wrap;gap:0}
+.drp-day{width:calc(100%/7);text-align:center;font-size:12px;color:#374151;padding:4px 0;cursor:pointer;border-radius:4px;transition:background .1s}
+.drp-day:hover{background:#f0fdfa;color:#0f766e}
+.drp-day.empty{cursor:default;color:transparent}
+.drp-day.empty:hover{background:none}
+.drp-day.start{background:#14b8a6;color:#fff;border-radius:4px 0 0 4px}
+.drp-day.end{background:#14b8a6;color:#fff;border-radius:0 4px 4px 0}
+.drp-day.range{background:#ccfbf1;color:#0f766e}
+.drp-day.start.end{border-radius:4px}
+.drp-day.today{color:#14b8a6;font-weight:600}
+.drp-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.drp-nav-btn{width:28px;height:28px;border:none;background:none;cursor:pointer;color:#6b7280;border-radius:4px;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.drp-nav-btn:hover{background:#f3f4f6;color:#374151}
+.drp-nav-title{font-size:13px;font-weight:600;color:#374151}
+.drp-footer{display:flex;justify-content:space-between;align-items:center;padding:8px 0 0;border-top:1px solid #e5e7eb;margin-top:8px}
+.drp-btn{height:26px;padding:0 12px;border-radius:4px;font-size:12px;cursor:pointer;border:none;transition:background .15s}
+.drp-btn-ok{background:#14b8a6;color:#fff}
+.drp-btn-ok:hover{background:#0d9488}
+.drp-btn-clr{background:#fff;color:#6b7280;border:1px solid #d1d5db}
+.drp-btn-clr:hover{background:#f9fafb;color:#374151}
 .dsep{font-size:12px;color:#9ca3af}
 .arow{display:flex;align-items:center;gap:7px;margin-top:8px}
 .abtn{height:29px;padding:0 13px;border-radius:4px;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:4px;white-space:nowrap;border:none}
@@ -203,24 +235,24 @@ th.hd,th.hdf{display:none}th.hd.v,th.hdf.v{display:table-cell}
 .fee-tip-footer{padding:8px 14px;border-top:1px solid #e5e7eb;font-size:12px;color:#14b8a6;text-align:center;cursor:pointer;background:#f9fafb;transition:color .15s}
 .fee-tip-footer:hover{color:#0d9488}
 .fee-tip-edit-item{display:flex;align-items:center;padding:5px 0;gap:6px}
-.fee-tip-edit-name{width:100px;height:26px;border:1px solid #d1d5db;border-radius:4px;padding:0 8px;font-size:12px;color:#374151;background:#fff}
+.fee-tip-edit-name{flex:1;min-width:0;height:26px;border:1px solid #d1d5db;border-radius:4px;padding:0 8px;font-size:12px;color:#374151;background:#fff}
 .fee-tip-edit-name:focus{border-color:#14b8a6;outline:none}
 .fee-tip-edit-amt{width:80px;height:26px;border:1px solid #d1d5db;border-radius:4px;padding:0 8px;font-size:12px;color:#374151;text-align:right;background:#fff}
 .fee-tip-edit-amt:focus{border-color:#14b8a6;outline:none}
-.fee-tip-edit-unit{font-size:11px;color:#9ca3af}
-.fee-tip-edit-del{width:22px;height:22px;border:none;background:none;cursor:pointer;color:#9ca3af;display:flex;align-items:center;justify-content:center;border-radius:3px;transition:all .15s}
+.fee-tip-edit-unit{font-size:11px;color:#9ca3af;flex-shrink:0;width:26px}
+.fee-tip-edit-del{width:22px;height:22px;border:none;background:none;cursor:pointer;color:#9ca3af;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .15s;flex-shrink:0}
 .fee-tip-edit-del:hover{background:#fef2f2;color:#ef4444}
-.fee-tip-add-row{display:flex;align-items:center;padding:6px 0;gap:6px;border-top:1px solid #e5e7eb;margin-top:4px}
-.fee-tip-add-name{width:100px;height:26px;border:1px solid #d1d5db;border-radius:4px;padding:0 8px;font-size:12px;color:#374151;background:#fff}
+.fee-tip-add-row{display:flex;align-items:center;padding:6px 14px;gap:6px;border-top:1px solid #e5e7eb;margin-top:4px}
+.fee-tip-add-name{flex:1;min-width:0;height:26px;border:1px solid #d1d5db;border-radius:4px;padding:0 8px;font-size:12px;color:#374151;background:#fff}
 .fee-tip-add-name:focus{border-color:#14b8a6;outline:none}
 .fee-tip-add-amt{width:80px;height:26px;border:1px solid #d1d5db;border-radius:4px;padding:0 8px;font-size:12px;color:#374151;text-align:right;background:#fff}
 .fee-tip-add-amt:focus{border-color:#14b8a6;outline:none}
-.fee-tip-add-unit{font-size:11px;color:#9ca3af}
-.fee-tip-add-btn{height:26px;padding:0 10px;background:#14b8a6;color:#fff;border:none;border-radius:4px;font-size:12px;cursor:pointer;white-space:nowrap}
+.fee-tip-add-unit{font-size:11px;color:#9ca3af;flex-shrink:0;width:26px}
+.fee-tip-add-btn{width:22px;height:22px;padding:0;background:#14b8a6;color:#fff;border:none;border-radius:50%;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;flex-shrink:0}
 .fee-tip-add-btn:hover{background:#0d9488}
 .fee-tip-actions{display:flex;justify-content:flex-end;gap:8px;padding:8px 14px;border-top:1px solid #e5e7eb;background:#f9fafb}
 .fee-tip-btn{height:28px;padding:0 12px;border-radius:4px;font-size:12px;cursor:pointer;border:none;transition:background .15s}
-.fee-tip-btn-close{background:#fff;color:#6b7280;border:1px solid #d1d5db;width:100%}
+.fee-tip-btn-close{background:#fff;color:#6b7280;border:1px solid #d1d5db}
 .fee-tip-btn-close:hover{background:#f9fafb;color:#374151;border-color:#9ca3af}
 .other-fee-cell{position:relative}
 .other-fee-link{font-variant-numeric:tabular-nums;color:#0f766e;font-weight:500;cursor:pointer;transition:color .15s;border-bottom:1px dotted #a7f3d0;padding-bottom:1px;display:inline-flex;align-items:center}
@@ -412,7 +444,23 @@ input[type=number]{-moz-appearance:textfield}
             <svg class="sdarr" width="10" height="6" viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z" fill="#9ca3af"/></svg>
             <div class="sdd" id="d-yr"></div></div></div>
         <div class="fc"><span class="flabel">出运时间</span>
-          <div class="dw"><input type="date" class="fi" style="width:126px" id="f-d1"><span class="dsep">至</span><input type="date" class="fi" style="width:126px" id="f-d2"></div>
+          <div class="date-range-wrap" id="dateRangeWrap" onclick="openDRP()">
+            <span class="date-range-input empty" id="drpStart">开始日期</span>
+            <span class="date-range-sep">-</span>
+            <span class="date-range-input empty" id="drpEnd">结束日期</span>
+          </div>
+          <div class="drp" id="drpPanel">
+            <div class="drp-nav">
+              <button class="drp-nav-btn" onclick="drpPrev()"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3l-6 5 6 5"/></svg></button>
+              <span class="drp-nav-title" id="drpNavTitle"></span>
+              <button class="drp-nav-btn" onclick="drpNext()"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l6 5-6 5"/></svg></button>
+            </div>
+            <div class="drp-row" id="drpRow"></div>
+            <div class="drp-footer">
+              <button class="drp-btn drp-btn-clr" onclick="clearDRP()">清除</button>
+              <button class="drp-btn drp-btn-ok" onclick="confirmDRP()">确定</button>
+            </div>
+          </div>
         </div>
         <button class="abtn sb2" onclick="doSearch()">
           <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6.5" cy="6.5" r="4"/><path d="M11 11l3 3"/></svg>搜索
@@ -662,7 +710,9 @@ function enterEditMode(rowNo){
     '<input class="fee-tip-add-name" id="tipNewName" type="text" placeholder="费用名称">'+
     '<input class="fee-tip-add-amt" id="tipNewAmt" type="text" placeholder="金额">'+
     '<span class="fee-tip-add-unit">CNY</span>'+
-    '<button class="fee-tip-add-btn" onclick="tipEditAddItem('+rowNo+')">添加</button>'+
+    '<button class="fee-tip-add-btn" onclick="tipEditAddItem('+rowNo+')">'+
+    '<svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="3"><path d="M3 8l4 4 6-8"/></svg>'+
+    '</button>'+
   '</div>';
   html+='<div class="fee-tip-actions">'+
     '<button class="fee-tip-btn fee-tip-btn-close" onclick="exitEditMode('+rowNo+')">关闭</button>'+
@@ -1289,6 +1339,156 @@ feeTipEl.addEventListener('mouseenter',function(){
 });
 feeTipEl.addEventListener('mouseleave',function(){
   if(!feeEditMode) hideFeeDialog();
+});
+
+// ===== 日期范围选择器 =====
+var drpStartVal=null;
+var drpEndVal=null;
+var drpPicking='start';
+var drpBaseMonth=new Date();
+drpBaseMonth.setDate(1);
+drpBaseMonth.setHours(0,0,0,0);
+
+var MONTH_NAMES=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+var WEEK_NAMES=['日','一','二','三','四','五','六'];
+
+function openDRP(){
+  var panel=document.getElementById('drpPanel');
+  if(panel.classList.contains('open')){closeDRP();return;}
+  var wrap=document.getElementById('dateRangeWrap');
+  wrap.classList.add('active');
+  renderDRP();
+  panel.classList.add('open');
+  var rect=wrap.getBoundingClientRect();
+  var pw=panel.offsetWidth;
+  var left=rect.left;
+  if(left+pw>window.innerWidth-10) left=window.innerWidth-pw-10;
+  if(left<10) left=10;
+  var top=rect.bottom+4;
+  if(top+panel.offsetHeight>window.innerHeight-10) top=rect.top-panel.offsetHeight-4;
+  if(top<10) top=10;
+  panel.style.left=left+'px';
+  panel.style.top=top+'px';
+}
+
+function closeDRP(){
+  var panel=document.getElementById('drpPanel');
+  panel.classList.remove('open');
+  document.getElementById('dateRangeWrap').classList.remove('active');
+}
+
+function renderDRP(){
+  var m1=new Date(drpBaseMonth);
+  var m2=new Date(drpBaseMonth);
+  m2.setMonth(m2.getMonth()+1);
+  var title=drpBaseMonth.getFullYear()+'年 '+MONTH_NAMES[drpBaseMonth.getMonth()]+' - '+MONTH_NAMES[m2.getMonth()];
+  document.getElementById('drpNavTitle').textContent=title;
+  var row=document.getElementById('drpRow');
+  row.innerHTML=renderDRPMonth(m1)+renderDRPMonth(m2);
+}
+
+function renderDRPMonth(dt){
+  var y=dt.getFullYear();
+  var m=dt.getMonth();
+  var title=y+'年'+MONTH_NAMES[m];
+  var firstDay=new Date(y,m,1);
+  var startWeekDay=firstDay.getDay();
+  var daysInMonth=new Date(y,m+1,0).getDate();
+  var today=new Date();
+  today.setHours(0,0,0,0);
+  var html='<div class="drp-month">';
+  html+='<div class="drp-month-title">'+title+'</div>';
+  html+='<div class="drp-week">';
+  for(var w=0;w<7;w++) html+='<span>'+WEEK_NAMES[w]+'</span>';
+  html+='</div>';
+  html+='<div class="drp-days">';
+  for(var i=0;i<startWeekDay;i++) html+='<span class="drp-day empty"></span>';
+  for(var d=1;d<=daysInMonth;d++){
+    var dateObj=new Date(y,m,d);
+    dateObj.setHours(0,0,0,0);
+    var ds=y+'-'+pad2(m+1)+'-'+pad2(d);
+    var cls='drp-day';
+    if(dateObj.getTime()===today.getTime()) cls+=' today';
+    var isStart=drpStartVal&&ds===drpStartVal;
+    var isEnd=drpEndVal&&ds===drpEndVal;
+    if(isStart) cls+=' start';
+    if(isEnd) cls+=' end';
+    if(drpStartVal&&drpEndVal&&ds>drpStartVal&&ds<drpEndVal) cls+=' range';
+    if(isStart&&isEnd) cls+=' start end';
+    html+='<span class="'+cls+'" data-date="'+ds+'" onclick="pickDate(\''+ds+'\')">'+d+'</span>';
+  }
+  html+='</div></div>';
+  return html;
+}
+
+function pad2(n){return n<10?'0'+n:String(n);}
+
+function pickDate(ds){
+  if(drpPicking==='start'||!drpStartVal){
+    drpStartVal=ds;
+    drpEndVal=null;
+    drpPicking='end';
+  }else{
+    if(ds<drpStartVal){
+      drpEndVal=drpStartVal;
+      drpStartVal=ds;
+    }else{
+      drpEndVal=ds;
+    }
+    drpPicking='start';
+  }
+  updateDRPDisplay();
+  renderDRP();
+}
+
+function updateDRPDisplay(){
+  var startEl=document.getElementById('drpStart');
+  var endEl=document.getElementById('drpEnd');
+  if(drpStartVal){
+    startEl.textContent=drpStartVal;
+    startEl.classList.remove('empty');
+  }else{
+    startEl.textContent='开始日期';
+    startEl.classList.add('empty');
+  }
+  if(drpEndVal){
+    endEl.textContent=drpEndVal;
+    endEl.classList.remove('empty');
+  }else{
+    endEl.textContent='结束日期';
+    endEl.classList.add('empty');
+  }
+}
+
+function drpPrev(){
+  drpBaseMonth.setMonth(drpBaseMonth.getMonth()-1);
+  renderDRP();
+}
+
+function drpNext(){
+  drpBaseMonth.setMonth(drpBaseMonth.getMonth()+1);
+  renderDRP();
+}
+
+function clearDRP(){
+  drpStartVal=null;
+  drpEndVal=null;
+  drpPicking='start';
+  updateDRPDisplay();
+  renderDRP();
+  closeDRP();
+}
+
+function confirmDRP(){
+  closeDRP();
+}
+
+document.addEventListener('mousedown',function(e){
+  var panel=document.getElementById('drpPanel');
+  var wrap=document.getElementById('dateRangeWrap');
+  if(panel.classList.contains('open')&&!panel.contains(e.target)&&!wrap.contains(e.target)){
+    closeDRP();
+  }
 });
 
 // ===== 初始化 =====
