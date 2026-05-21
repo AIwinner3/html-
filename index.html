@@ -152,75 +152,89 @@ th.hd,th.hdf{display:none}th.hd.v,th.hdf.v{display:table-cell}
 ::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:3px}
 ::-webkit-scrollbar-thumb:hover{background:#9ca3af}
 
-/* 其他费用 Dialog */
-.fee-dialog-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1200;display:none;align-items:center;justify-content:center}
-.fee-dialog-overlay.open{display:flex}
-.fee-dialog{background:#fff;border-radius:12px;width:460px;max-width:96vw;box-shadow:0 12px 40px rgba(0,0,0,.2);overflow:hidden;max-height:80vh;display:flex;flex-direction:column}
-.fee-dialog-head{padding:18px 22px 14px;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.fee-dialog-title{font-size:15px;font-weight:700;color:#111}
-.fee-dialog-close{width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:6px;color:#9ca3af;border:none;background:none}
-.fee-dialog-close:hover{background:#f3f4f6;color:#374151}
-.fee-dialog-body{padding:18px 22px;overflow-y:auto;flex:1}
-.fee-table-header{display:flex;align-items:center;margin-bottom:10px}
-.fee-col-name{flex:1;font-size:12px;font-weight:600;color:#6b7280;padding-left:2px}
-.fee-col-amount{width:140px;font-size:12px;font-weight:600;color:#6b7280;text-align:right;padding-right:2px}
-.fee-col-actions{width:64px;font-size:12px;font-weight:600;color:#6b7280;text-align:center}
-.fee-summary-row{display:flex;align-items:center;margin-bottom:14px;padding:10px 12px;background:#f0fdf4;border-radius:8px;border:1px solid #a7f3d0}
-.fee-summary-label{flex:1;font-size:13px;font-weight:600;color:#0f766e}
-.fee-summary-input{width:160px;height:30px;border:1px solid #a7f3d0;border-radius:6px;padding:0 10px;font-size:13px;font-weight:600;color:#0f766e;text-align:right;outline:none;background:#fff}
-.fee-summary-input:focus{border-color:#14b8a6;box-shadow:0 0 0 2px rgba(20,184,166,.15)}
-/* 费用明细行 */
-.fee-item-row{display:flex;align-items:center;padding:7px 10px;border-radius:7px;border:1px solid #f3f4f6;margin-bottom:8px;background:#fafafa;gap:6px}
-.fee-item-row:last-of-type{margin-bottom:0}
-.fee-item-name-input{flex:1;font-size:12px;color:#374151;border:1px solid transparent;border-radius:4px;padding:3px 6px;height:26px;outline:none;background:transparent}
-.fee-item-name-input:hover{border-color:#e5e7eb;background:#fff}
-.fee-item-name-input:focus{border-color:#14b8a6;background:#fff;box-shadow:0 0 0 2px rgba(20,184,166,.1)}
-.fee-item-amount-input{width:110px;font-size:12px;font-weight:500;color:#0f766e;border:1px solid transparent;border-radius:4px;padding:3px 6px;height:26px;text-align:right;outline:none;background:transparent}
-.fee-item-amount-input:hover{border-color:#e5e7eb;background:#fff}
-.fee-item-amount-input:focus{border-color:#14b8a6;background:#fff;box-shadow:0 0 0 2px rgba(20,184,166,.1);color:#374151}
-.fee-item-unit{font-size:11px;color:#9ca3af;white-space:nowrap;flex-shrink:0}
-.fee-item-del{width:22px;height:22px;border-radius:50%;border:none;background:#fee2e2;color:#ef4444;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s}
-.fee-item-del:hover{background:#fca5a5}
-.fee-add-section{margin-top:16px;padding-top:14px;border-top:1px dashed #e5e7eb}
-.fee-add-btn-row{display:flex;align-items:center;gap:8px;cursor:pointer;width:fit-content;user-select:none}
-.fee-add-circle{width:28px;height:28px;border-radius:50%;background:#16a34a;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s}
-.fee-add-btn-row:hover .fee-add-circle{background:#15803d}
-.fee-add-circle svg{width:14px;height:14px}
-.fee-add-label{font-size:13px;color:#16a34a;font-weight:500}
-.fee-add-btn-row:hover .fee-add-label{color:#15803d}
-.fee-new-inputs{display:none;margin-top:12px;gap:8px;flex-direction:column}
-.fee-new-inputs.open{display:flex}
-.fee-new-row{display:flex;gap:8px;align-items:center}
-.fee-new-input{height:32px;border:1px solid #d1d5db;border-radius:6px;padding:0 10px;font-size:13px;color:#374151;outline:none;background:#fff}
-.fee-new-input:focus{border-color:#14b8a6;box-shadow:0 0 0 2px rgba(20,184,166,.12)}
-.fee-new-input.name-inp{flex:1;min-width:0}
-.fee-new-input.amt-inp{width:130px}
-.fee-confirm-btn{height:32px;padding:0 14px;background:#14b8a6;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;white-space:nowrap}
-.fee-confirm-btn:hover{background:#0d9488}
-.fee-dialog-footer{padding:12px 22px 16px;border-top:1px solid #e5e7eb;display:flex;justify-content:flex-end;flex-shrink:0}
-.fee-footer-close{height:32px;padding:0 20px;background:#f3f4f6;color:#374151;border:none;border-radius:6px;font-size:13px;cursor:pointer;font-weight:500}
-.fee-footer-close:hover{background:#e5e7eb}
-
-/* 其他费用列表单元格 - 破折号特殊样式（有入口提示） */
-.other-fee-dash{
-  display:inline-flex;align-items:center;gap:4px;
-  cursor:pointer;
-  color:#9ca3af;
-  font-size:13px;
-  font-weight:500;
-  padding:2px 8px;
-  border-radius:4px;
-  border:1px dashed #d1d5db;
-  transition:all .15s;
-  user-select:none;
-}
-.other-fee-dash:hover{
-  border-color:#14b8a6;
-  color:#0f766e;
-  background:#f0fdf4;
-}
-.other-fee-dash svg{flex-shrink:0;opacity:.6}
-.other-fee-dash:hover svg{opacity:1}
+.fee-popover{position:fixed;z-index:600;background:#fff;border:1px solid #d1d5db;border-radius:8px;padding:0;box-shadow:0 6px 24px rgba(0,0,0,.15);min-width:280px;display:none;overflow-y:auto}
+.fee-popover.open{display:block}
+.fee-popover-title{font-size:13px;font-weight:600;color:#111;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e5e7eb;background:#f9fafb;flex-shrink:0}
+.fee-popover-title-left{display:flex;align-items:center;gap:8px}
+.fee-popover-title-total{font-size:12px;font-weight:600}
+.fee-popover-title-total.pos{color:#0f766e}
+.fee-popover-title-total.neg{color:#ef4444}
+.fee-popover-title-unit{font-size:11px;color:#9ca3af}
+.fee-popover-close{width:22px;height:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:4px;color:#9ca3af;border:none;background:none}
+.fee-popover-close:hover{background:#f3f4f6;color:#374151}
+.fee-popover-body{padding:10px 14px}
+.fee-popover-list{}
+.fee-popover-item{display:flex;align-items:center;padding:5px 0;gap:6px;font-size:12px;border-bottom:1px solid #f3f4f6}
+.fee-popover-item:last-child{border-bottom:none}
+.fee-popover-item-name-input{flex:1;font-size:12px;color:#374151;border:1px solid transparent;border-radius:3px;padding:2px 4px;height:22px;outline:none;background:transparent;min-width:0}
+.fee-popover-item-name-input:hover{border-color:#e5e7eb;background:#fff}
+.fee-popover-item-name-input:focus{border-color:#14b8a6;background:#fff;box-shadow:0 0 0 2px rgba(20,184,166,.1)}
+.fee-popover-item-amount-input{width:80px;font-size:12px;font-weight:500;border:1px solid transparent;border-radius:3px;padding:2px 4px;height:22px;text-align:right;outline:none;background:transparent}
+.fee-popover-item-amount-input:hover{border-color:#e5e7eb;background:#fff}
+.fee-popover-item-amount-input:focus{border-color:#14b8a6;background:#fff;box-shadow:0 0 0 2px rgba(20,184,166,.1);color:#374151}
+.fee-popover-item-amount-input.pos{color:#0f766e}
+.fee-popover-item-amount-input.neg{color:#ef4444}
+.fee-popover-item-unit{font-size:11px;color:#9ca3af}
+.fee-popover-item-del{width:18px;height:18px;border-radius:50%;border:none;background:#fee2e2;color:#ef4444;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;transition:background .15s}
+.fee-popover-item-del:hover{background:#fca5a5}
+.fee-popover-add{margin-top:8px;padding-top:8px;border-top:1px dashed #e5e7eb}
+.fee-popover-add-row{display:flex;align-items:center;gap:6px}
+.fee-popover-add-input{height:26px;border:1px solid #d1d5db;border-radius:4px;padding:0 6px;font-size:12px;color:#374151;outline:none;background:#fff}
+.fee-popover-add-input:focus{border-color:#14b8a6;box-shadow:0 0 0 2px rgba(20,184,166,.12)}
+.fee-popover-add-input.name-inp{flex:1;min-width:0}
+.fee-popover-add-input.amt-inp{width:80px}
+.fee-popover-add-btn{height:26px;padding:0 10px;background:#14b8a6;color:#fff;border:none;border-radius:4px;font-size:12px;cursor:pointer;white-space:nowrap}
+.fee-popover-add-btn:hover{background:#0d9488}
+.fee-popover-summary{display:flex;align-items:center;padding:8px 0 2px;font-size:12px;font-weight:600;color:#0f766e;border-top:1px solid #e5e7eb;margin-top:4px}
+.fee-tip{position:fixed;z-index:600;background:#fff;border:1px solid #d1d5db;border-radius:8px;padding:0;box-shadow:0 6px 24px rgba(0,0,0,.15);min-width:260px;display:none;font-size:12px;max-height:calc(100vh - 30px);overflow-y:auto}
+.fee-tip.open{display:block}
+.fee-tip-arrow{position:absolute;top:-7px;right:24px;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:7px solid #d1d5db}
+.fee-tip-arrow-inner{position:absolute;top:-6px;right:25px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:6px solid #fff}
+.fee-tip-header{display:flex;justify-content:space-between;font-weight:600;padding:10px 14px 6px;border-bottom:1px solid #e5e7eb;color:#0f766e;background:#f9fafb}
+.fee-tip-header.neg{color:#ef4444}
+.fee-tip-body{padding:8px 14px}
+.fee-tip-row{display:flex;justify-content:space-between;padding:4px 0}
+.fee-tip-name{color:#6b7280;flex:1;min-width:0}
+.fee-tip-amt{font-weight:500;text-align:right;min-width:70px}
+.fee-tip-amt.pos{color:#0f766e}
+.fee-tip-amt.neg{color:#ef4444}
+.fee-tip-unit{font-size:11px;color:#9ca3af}
+.fee-tip-empty{padding:10px 14px;text-align:center;color:#9ca3af;font-size:12px}
+.fee-tip-footer{padding:8px 14px;border-top:1px solid #e5e7eb;font-size:12px;color:#14b8a6;text-align:center;cursor:pointer;background:#f9fafb;transition:color .15s}
+.fee-tip-footer:hover{color:#0d9488}
+.fee-tip-edit-item{display:flex;align-items:center;padding:5px 0;gap:6px}
+.fee-tip-edit-name{width:100px;height:26px;border:1px solid #d1d5db;border-radius:4px;padding:0 8px;font-size:12px;color:#374151;background:#fff}
+.fee-tip-edit-name:focus{border-color:#14b8a6;outline:none}
+.fee-tip-edit-amt{width:80px;height:26px;border:1px solid #d1d5db;border-radius:4px;padding:0 8px;font-size:12px;color:#374151;text-align:right;background:#fff}
+.fee-tip-edit-amt:focus{border-color:#14b8a6;outline:none}
+.fee-tip-edit-unit{font-size:11px;color:#9ca3af}
+.fee-tip-edit-del{width:22px;height:22px;border:none;background:none;cursor:pointer;color:#9ca3af;display:flex;align-items:center;justify-content:center;border-radius:3px;transition:all .15s}
+.fee-tip-edit-del:hover{background:#fef2f2;color:#ef4444}
+.fee-tip-add-row{display:flex;align-items:center;padding:6px 0;gap:6px;border-top:1px solid #e5e7eb;margin-top:4px}
+.fee-tip-add-name{width:100px;height:26px;border:1px solid #d1d5db;border-radius:4px;padding:0 8px;font-size:12px;color:#374151;background:#fff}
+.fee-tip-add-name:focus{border-color:#14b8a6;outline:none}
+.fee-tip-add-amt{width:80px;height:26px;border:1px solid #d1d5db;border-radius:4px;padding:0 8px;font-size:12px;color:#374151;text-align:right;background:#fff}
+.fee-tip-add-amt:focus{border-color:#14b8a6;outline:none}
+.fee-tip-add-unit{font-size:11px;color:#9ca3af}
+.fee-tip-add-btn{height:26px;padding:0 10px;background:#14b8a6;color:#fff;border:none;border-radius:4px;font-size:12px;cursor:pointer;white-space:nowrap}
+.fee-tip-add-btn:hover{background:#0d9488}
+.fee-tip-actions{display:flex;justify-content:flex-end;gap:8px;padding:8px 14px;border-top:1px solid #e5e7eb;background:#f9fafb}
+.fee-tip-btn{height:28px;padding:0 12px;border-radius:4px;font-size:12px;cursor:pointer;border:none;transition:background .15s}
+.fee-tip-btn-close{background:#fff;color:#6b7280;border:1px solid #d1d5db;width:100%}
+.fee-tip-btn-close:hover{background:#f9fafb;color:#374151;border-color:#9ca3af}
+.other-fee-cell{position:relative}
+.other-fee-link{font-variant-numeric:tabular-nums;color:#0f766e;font-weight:500;cursor:pointer;transition:color .15s;border-bottom:1px dotted #a7f3d0;padding-bottom:1px;display:inline-flex;align-items:center}
+.other-fee-link:hover{color:#0d9488;border-bottom-color:#0d9488}
+.other-fee-link-zero{font-size:12px}
+.other-fee-link-amount{font-size:12px}
+.other-fee-link svg{width:10px;height:10px;stroke:currentColor;margin:0 auto}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+input[type=number]{-moz-appearance:textfield}
+.route-cell{position:relative}
+.route-short{cursor:pointer;color:#0f766e;font-weight:500;border-bottom:1px dotted #a7f3d0;transition:color .15s}
+.route-short:hover{color:#14b8a6;border-bottom-color:#14b8a6}
+.route-tooltip{position:fixed;z-index:600;background:#fff;border:1px solid #d1d5db;border-radius:6px;padding:8px 12px;font-size:12px;color:#374151;box-shadow:0 4px 16px rgba(0,0,0,.12);max-width:420px;display:none;line-height:1.6;white-space:normal}
+.route-tooltip.open{display:block}
 </style>
 </head>
 <body>
@@ -277,54 +291,8 @@ th.hd,th.hdf{display:none}th.hd.v,th.hdf.v{display:table-cell}
   </div>
 </div>
 
-<!-- 其他费用 Dialog -->
-<div class="fee-dialog-overlay" id="feeDialog">
-  <div class="fee-dialog">
-    <div class="fee-dialog-head">
-      <span class="fee-dialog-title">其他费用明细</span>
-      <button class="fee-dialog-close" onclick="closeFeeDialog()">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l8 8M12 4l-8 8"/></svg>
-      </button>
-    </div>
-    <div class="fee-dialog-body">
-      <!-- 表头 -->
-      <div class="fee-table-header">
-        <span class="fee-col-name">费用名称</span>
-        <span class="fee-col-amount">金额（CNY）</span>
-        <span class="fee-col-actions">操作</span>
-      </div>
-      <!-- 汇总行 -->
-      <div class="fee-summary-row">
-        <span class="fee-summary-label">汇总 <span style="font-size:11px;font-weight:400;color:#6b7280">（自动计算）</span></span>
-        <input class="fee-summary-input" id="feeSummaryInput" type="text" placeholder="—" readonly style="cursor:default;background:#f0fdf4">
-      </div>
-      <!-- 费用列表 -->
-      <div id="feeItemList"></div>
-      <!-- 新增费用区域 -->
-      <div class="fee-add-section">
-        <div class="fee-add-btn-row" onclick="toggleFeeAddInput()">
-          <div class="fee-add-circle">
-            <svg id="feeAddIcon" viewBox="0 0 14 14" fill="none" width="14" height="14">
-              <line x1="7" y1="2" x2="7" y2="12" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
-              <line x1="2" y1="7" x2="12" y2="7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <span class="fee-add-label">添加费用</span>
-        </div>
-        <div class="fee-new-inputs" id="feeNewInputs">
-          <div class="fee-new-row">
-            <input class="fee-new-input name-inp" id="newFeeName" type="text" placeholder="费用名称（如：停车费）">
-            <input class="fee-new-input amt-inp" id="newFeeAmt" type="number" placeholder="金额 CNY" step="0.001">
-            <button class="fee-confirm-btn" onclick="addNewFeeItem()">确认添加</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="fee-dialog-footer">
-      <button class="fee-footer-close" onclick="closeFeeDialog()">关闭</button>
-    </div>
-  </div>
-</div>
+<div class="fee-tip" id="feeTip"></div>
+<div class="route-tooltip" id="routeTooltip"></div>
 
 <div class="moverlay" id="imodal">
   <div class="mbox">
@@ -418,21 +386,21 @@ th.hd,th.hdf{display:none}th.hd.v,th.hdf.v{display:table-cell}
             oninput="filterDD('s-name','d-name',NAMES)" onfocus="openDD('s-name','d-name',NAMES)" onblur="delayClose('d-name')">
             <svg class="sdarr" width="10" height="6" viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z" fill="#9ca3af"/></svg>
             <div class="sdd" id="d-name"></div></div></div>
-        <div class="fc"><span class="flabel">集装箱号</span><input type="text" class="fi" style="width:155px" id="f-box" placeholder="支持多个，逗号隔开"></div>
-        <div class="fc"><span class="flabel">提运单号</span><input type="text" class="fi" style="width:155px" id="f-bill" placeholder="支持多个，逗号隔开"></div>
-        <div class="fc"><span class="flabel">物流操作人员</span><input type="text" class="fi" style="width:140px" id="f-lop" placeholder="支持多个，逗号隔开"></div>
-      </div>
-      <div class="frow">
         <div class="fc"><span class="flabel">车牌号</span>
           <div class="sdw"><input class="sdi" id="s-plate" placeholder="请选择/输入" autocomplete="off"
             oninput="filterDD('s-plate','d-plate',PLATES)" onfocus="openDD('s-plate','d-plate',PLATES)" onblur="delayClose('d-plate')">
             <svg class="sdarr" width="10" height="6" viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z" fill="#9ca3af"/></svg>
             <div class="sdd" id="d-plate"></div></div></div>
-        <div class="fc"><span class="flabel">装柜地点</span>
-          <div class="sdw"><input class="sdi" id="s-loc" placeholder="请选择/输入" autocomplete="off"
-            oninput="filterDD('s-loc','d-loc',LOCS)" onfocus="openDD('s-loc','d-loc',LOCS)" onblur="delayClose('d-loc')">
+        <div class="fc"><span class="flabel">集装箱号</span><input type="text" class="fi" style="width:155px" id="f-box" placeholder="支持多个，逗号隔开"></div>
+        <div class="fc"><span class="flabel">提运单号</span><input type="text" class="fi" style="width:155px" id="f-bill" placeholder="支持多个，逗号隔开"></div>
+        <div class="fc"><span class="flabel">物流操作人员</span><input type="text" class="fi" style="width:140px" id="f-lop" placeholder="支持多个，逗号隔开"></div>
+      </div>
+      <div class="frow">
+        <div class="fc"><span class="flabel">外堆场</span>
+          <div class="sdw"><input class="sdi" id="s-oy" placeholder="请选择/输入" autocomplete="off"
+            oninput="filterDD('s-oy','d-oy',OUTER_YARDS)" onfocus="openDD('s-oy','d-oy',OUTER_YARDS)" onblur="delayClose('d-oy')">
             <svg class="sdarr" width="10" height="6" viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z" fill="#9ca3af"/></svg>
-            <div class="sdd" id="d-loc"></div></div></div>
+            <div class="sdd" id="d-oy"></div></div></div>
         <div class="fc"><span class="flabel">提柜点</span>
           <div class="sdw"><input class="sdi" id="s-yp" placeholder="请选择/输入" autocomplete="off"
             oninput="filterDD('s-yp','d-yp',YARDS)" onfocus="openDD('s-yp','d-yp',YARDS)" onblur="delayClose('d-yp')">
@@ -443,8 +411,6 @@ th.hd,th.hdf{display:none}th.hd.v,th.hdf.v{display:table-cell}
             oninput="filterDD('s-yr','d-yr',YARDS)" onfocus="openDD('s-yr','d-yr',YARDS)" onblur="delayClose('d-yr')">
             <svg class="sdarr" width="10" height="6" viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z" fill="#9ca3af"/></svg>
             <div class="sdd" id="d-yr"></div></div></div>
-      </div>
-      <div class="frow" style="margin-bottom:0">
         <div class="fc"><span class="flabel">出运时间</span>
           <div class="dw"><input type="date" class="fi" style="width:126px" id="f-d1"><span class="dsep">至</span><input type="date" class="fi" style="width:126px" id="f-d2"></div>
         </div>
@@ -484,8 +450,7 @@ th.hd,th.hdf{display:none}th.hd.v,th.hdf.v{display:table-cell}
               <th rowspan="2" style="min-width:85px;width:85px">提柜点</th>
               <th rowspan="2" style="min-width:85px;width:85px">还柜点</th>
               <th rowspan="2" style="min-width:85px;width:85px">外堆场</th>
-              <th rowspan="2" style="min-width:85px;width:85px">装柜地点</th>
-              <th rowspan="2" style="min-width:115px;width:115px">运输线路</th>
+              <th rowspan="2" style="min-width:115px;width:115px">装柜路线</th>
               <th rowspan="2" style="min-width:88px;width:88px">物流操作人员</th>
               <th id="g1" colspan="3" style="min-width:60px;font-weight:700;border-bottom:2px solid #a7f3d0">
                 司机费用明细
@@ -537,8 +502,16 @@ var NAMES=['张三','李四','王五','赵六','孙七','周八','郑十','刘�
 var PLATES=['粤A12345','粤B23456','粤C34567','粤D45678','粤E56789','粤F67890','粤H89011','粤J90123','粤K01234','粤L12345','粤N34567','粤M45678','粤P56789','粤Q67890','粤R78901'];
 var YARDS=['盐田码头','蛇口码头','南沙码头','大铲湾弯头'];
 var OUTER_YARDS=['黄埔外堆场','南沙外堆场','蛇口外堆场','盐田外堆场','东莞外堆场','佛山外堆场'];
-var LOCS=['广州白云仓','深圳龙华仓','东莞虎门仓','佛山禅城仓','中山小榄仓','广州花都仓','惠州仲恺仓'];
-var ROUTES=['广州白云→南沙港','东莞虎门→深圳盐田港','佛山禅城→广州南沙港','广州花都→黄埔港','中山小榄→南沙港','惠州仲恺→盐田港','广州→佛山→南沙港','深圳→东莞→广州南沙'];
+var ROUTES=[
+  {short:'深圳龙岗→盐田港',full:'深圳市龙岗区坂田街道岗头村工业路12号→盐田港区盐田街道港口大道1号'},
+  {short:'东莞虎门→盐田港',full:'东莞市虎门镇赤岗村工业路6号→盐田港区盐田街道港口大道1号'},
+  {short:'佛山禅城→南沙港',full:'佛山市禅城区石湾街道深村大道28号→广州市南沙区港口大道1号'},
+  {short:'广州花都→黄埔港',full:'广州市花都区花山镇小布村商业路36号→广州市黄埔区港区大道1号'},
+  {short:'中山小榄→南沙港',full:'中山市小榄镇升平村工业大道18号→广州市南沙区港口大道1号'},
+  {short:'惠州仲恺→盐田港',full:'惠州市仲恺高新区陈江街道胜利村工业路8号→盐田港区盐田街道港口大道1号'},
+  {short:'广州白云→南沙港',full:'广州市白云区金沙街道沙凤村商业路22号→广州市南沙区港口大道1号'},
+  {short:'深圳南山→蛇口港',full:'深圳市南山区粤海街道3688号→蛇口港区港湾大道1号'}
+];
 var TIMES=['2025-05-03 08:21','2025-05-05 14:33','2025-05-08 09:15','2025-05-10 16:42','2025-05-12 11:08','2025-05-14 07:55','2025-05-16 13:20','2025-05-18 10:37','2025-05-20 09:01','2025-05-22 15:44'];
 var LOPS=['海运操作A','海运操作B','物流专员C','操作专员D','物流张员','海运操作E'];
 // 系统人名（用于模板下载命名）
@@ -549,35 +522,20 @@ function rf(){return Math.random()<0.38?0:rnd(50,900);}
 function pk(a,i){return a[i%a.length];}
 function fa(n){if(!n)return'<span class="dash">\u2014</span>';return'<span class="amt">'+n.toFixed(3)+'\u2009CNY</span>';}
 
-function renderLocTags(locStr){
-  var parts=locStr.split('+');
-  if(parts.length===1) return '<span class="muted">'+locStr+'</span>';
-  return parts.map(function(p){
-    return '<span style="display:inline-block;background:#f0fdf4;border:1px solid #a7f3d0;border-radius:3px;padding:1px 5px;font-size:11px;color:#0f766e;margin:1px 2px;white-space:nowrap">'+p.trim()+'</span>';
-  }).join('<span style="color:#9ca3af;font-size:11px;margin:0 1px">+</span>');
-}
-
-// ===== 修改1：生成150条数据 =====
 var ALLDATA=Array.from({length:150},function(_,i){
   var f={ji:rf(),zeng:rf(),yi:rf(),ya:rf(),guo:rf(),chao:rf(),feng:rf(),ting:rf()};
   var fSum=f.ji+f.zeng+f.yi+f.ya+f.guo+f.chao+f.feng+f.ting;
   var o={lujiao:rf(),ranyou:rf(),weixiu:rf(),za:rf()};
   var oSum=o.lujiao+o.ranyou+o.weixiu+o.za;
-  var locVal;
-  if(i%3===1){
-    locVal=pk(LOCS,i)+'+'+pk(LOCS,i+2);
-  } else if(i%7===0){
-    locVal=pk(LOCS,i)+'+'+pk(LOCS,i+1)+'+'+pk(LOCS,i+3);
-  } else {
-    locVal=pk(LOCS,i);
-  }
+  var routeObj=pk(ROUTES,i);
   var cabSuffixes=['US','UK','DE','CA','AU','JP','FR','SG','NL','KR'];
   var cabMonth=String(Math.floor(i/30)+5).padStart(2,'0');
   var cabDay=String((i%30)+1).padStart(2,'0');
   var cabNo='ZG26-'+cabMonth+cabDay+'-'+cabSuffixes[i%cabSuffixes.length];
   return{no:i+1,bill:'BL-25'+String(i+1000).padStart(5,'0'),cab:cabNo,
     box:'MSCU'+rnd(1000000,9999999),name:pk(NAMES,i),plate:pk(PLATES,i),
-    yardP:pk(YARDS,i),yardR:pk(YARDS,i+1),outerYard:pk(OUTER_YARDS,i),loc:locVal,route:pk(ROUTES,i),
+    yardP:pk(YARDS,i),yardR:pk(YARDS,i+1),outerYard:pk(OUTER_YARDS,i),
+    routeShort:routeObj.short,routeFull:routeObj.full,
     time:pk(TIMES,i),lop:pk(LOPS,i),
     fSum:fSum+oSum,ji:f.ji,zeng:f.zeng,yi:f.yi,ya:f.ya,guo:f.guo,chao:f.chao,feng:f.feng,ting:f.ting,
     oSum:oSum,lujiao:o.lujiao,ranyou:o.ranyou,weixiu:o.weixiu,za:o.za};
@@ -586,9 +544,20 @@ var DISP=[].concat(ALLDATA);
 
 // ===== 其他费用存储（修改1：列表显示汇总金额；修改2：可编辑可删除） =====
 var feeItems={}; // {rowNo: [{id, name, amount}]}
-var currentFeeRowNo=null;
-var feeAddOpen=false;
 var feeIdCounter=1;
+
+ALLDATA.forEach(function(row){
+  var items=[];
+  var feeNames=['lujiao','ranyou','weixiu','za'];
+  var feeLabels=['路桥费','燃油费','维修费','杂费'];
+  for(var j=0;j<feeNames.length;j++){
+    var val=row[feeNames[j]];
+    if(val&&val>0){
+      items.push({id:feeIdCounter++,name:feeLabels[j],amount:val});
+    }
+  }
+  if(items.length>0) feeItems[row.no]=items;
+});
 
 function getFeeTotal(rowNo){
   var items=feeItems[rowNo]||[];
@@ -597,19 +566,174 @@ function getFeeTotal(rowNo){
   return sum;
 }
 
-// 渲染"其他费用"列的单元格内容
 function renderOtherFeeCell(rowNo){
+  var items=feeItems[rowNo]||[];
+  var hasItems=items&&items.length>0;
   var total=getFeeTotal(rowNo);
-  if(total===0){
-    // 修改1：汇总为0时显示破折号，但有特殊样式提示可点击
-    return '<span class="other-fee-dash" onclick="openOtherFeeDialog('+rowNo+')" title="点击添加其他费用">'+
-      '<svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3v10M3 8h10"/></svg>'+
-    '</span>';
-  } else {
-    return '<span class="amt" style="cursor:pointer;text-decoration:underline dotted" onclick="openOtherFeeDialog('+rowNo+')" title="点击查看/编辑费用明细">'+
-      total.toFixed(3)+'\u2009CNY'+
-    '</span>';
+  if(!hasItems){
+    return '<span class="other-fee-link" onmouseenter="showFeeDialog('+rowNo+',this)" onmouseleave="hideFeeDialog()">'+
+      '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="8" y1="3" x2="8" y2="13"/><line x1="3" y1="8" x2="13" y2="8"/></svg></span>';
   }
+  var amtCls=total<0?'neg':'pos';
+  var amtStr=total<0?'<span style="color:#ef4444">'+total.toFixed(3)+'</span>':total.toFixed(3);
+  if(total===0){
+    return '<span class="other-fee-link other-fee-link-zero" onmouseenter="showFeeDialog('+rowNo+',this)" onmouseleave="hideFeeDialog()">0.000\u2009CNY</span>';
+  }
+  return '<span class="other-fee-link other-fee-link-amount" onmouseenter="showFeeDialog('+rowNo+',this)" onmouseleave="hideFeeDialog()">'+amtStr+'\u2009CNY</span>';
+}
+
+var feeDialogTimer=null;
+var activeDialogNo=null;
+
+function showFeeDialog(rowNo,el){
+  if(activeDialogNo===rowNo) return;
+  if(feeEditMode) return;
+  clearTimeout(feeDialogTimer);
+  activeDialogNo=rowNo;
+  var dialog=document.getElementById('feeTip');
+  var items=feeItems[rowNo]||[];
+  var hasItems=items&&items.length>0;
+  var total=getFeeTotal(rowNo);
+  var totalCls=total<0?'neg':'';
+  var totalAmtCls=total<0?'neg':'pos';
+  var totalAmtStr=total<0?'<span style="color:#ef4444">'+total.toFixed(3)+'</span>':total.toFixed(3);
+  var html='<div class="fee-tip-arrow"></div><div class="fee-tip-arrow-inner"></div>';
+  html+='<div class="fee-tip-header '+totalCls+'"><span>合计</span><span class="fee-tip-amt '+totalAmtCls+'">'+totalAmtStr+'<span class="fee-tip-unit"> CNY</span></span></div>';
+  if(hasItems){
+    html+='<div class="fee-tip-body">';
+    for(var i=0;i<items.length;i++){
+      var item=items[i];
+      var cls=item.amount<0?'neg':'pos';
+      html+='<div class="fee-tip-row"><span class="fee-tip-name">'+escHtml(item.name)+'</span><span class="fee-tip-amt '+cls+'">'+item.amount.toFixed(3)+'<span class="fee-tip-unit"> CNY</span></span></div>';
+    }
+    html+='</div>';
+  }else{
+    html+='<div class="fee-tip-empty">暂无费用明细</div>';
+  }
+  html+='<div class="fee-tip-footer" onclick="enterEditMode('+rowNo+')">点击添加其他费用明细</div>';
+  dialog.innerHTML=html;
+  dialog.classList.add('open');
+  var rect=el.getBoundingClientRect();
+  var dlgW=dialog.offsetWidth;
+  var dialogLeft=rect.right-dlgW;
+  if(dialogLeft<10) dialogLeft=10;
+  if(dialogLeft+dlgW>window.innerWidth-10) dialogLeft=window.innerWidth-dlgW-10;
+  var dlgH=dialog.offsetHeight;
+  var top=rect.bottom+8;
+  if(top+dlgH>window.innerHeight-10) top=rect.top-dlgH-8;
+  if(top<10) top=10;
+  dialog.style.top=top+'px';
+  dialog.style.left=dialogLeft+'px';
+}
+
+function hideFeeDialog(){
+  feeDialogTimer=setTimeout(function(){
+    document.getElementById('feeTip').classList.remove('open');
+    activeDialogNo=null;
+  },200);
+}
+
+var feeEditMode=false;
+
+function enterEditMode(rowNo){
+  feeEditMode=true;
+  clearTimeout(feeDialogTimer);
+  var dialog=document.getElementById('feeTip');
+  var items=feeItems[rowNo]||[];
+  var total=getFeeTotal(rowNo);
+  var totalCls=total<0?'neg':'pos';
+  var totalStr=total<0?'<span style="color:#ef4444">'+total.toFixed(3)+'</span>':total.toFixed(3);
+  var html='<div class="fee-tip-arrow"></div><div class="fee-tip-arrow-inner"></div>';
+  html+='<div class="fee-tip-header '+totalCls+'"><span>其他费用明细</span><span class="fee-tip-amt '+totalCls+'">合计：'+totalStr+'<span class="fee-tip-unit"> CNY</span></span></div>';
+  html+='<div class="fee-tip-body">';
+  for(var i=0;i<items.length;i++){
+    var item=items[i];
+    var amtCls=item.amount<0?'neg':'pos';
+    html+='<div class="fee-tip-edit-item">'+
+      '<input class="fee-tip-edit-name" type="text" value="'+escHtml(item.name)+'" data-id="'+item.id+'" onchange="tipEditUpdateName('+rowNo+','+item.id+',this.value)">'+
+      '<input class="fee-tip-edit-amt '+amtCls+'" type="text" value="'+item.amount.toFixed(3)+'" data-id="'+item.id+'" onchange="tipEditUpdateAmount('+rowNo+','+item.id+',this.value)">'+
+      '<span class="fee-tip-edit-unit">CNY</span>'+
+      '<button class="fee-tip-edit-del" onclick="tipEditDeleteItem('+rowNo+','+item.id+')">'+
+      '<svg width="8" height="8" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>'+
+    '</div>';
+  }
+  html+='</div>';
+  html+='<div class="fee-tip-add-row">'+
+    '<input class="fee-tip-add-name" id="tipNewName" type="text" placeholder="费用名称">'+
+    '<input class="fee-tip-add-amt" id="tipNewAmt" type="text" placeholder="金额">'+
+    '<span class="fee-tip-add-unit">CNY</span>'+
+    '<button class="fee-tip-add-btn" onclick="tipEditAddItem('+rowNo+')">添加</button>'+
+  '</div>';
+  html+='<div class="fee-tip-actions">'+
+    '<button class="fee-tip-btn fee-tip-btn-close" onclick="exitEditMode('+rowNo+')">关闭</button>'+
+  '</div>';
+  dialog.innerHTML=html;
+  dialog.classList.add('open');
+  dialog.onmouseenter=function(){clearTimeout(feeDialogTimer);};
+  dialog.onmouseleave=function(){exitEditMode(rowNo);};
+  var cell=document.getElementById('otherCell_'+rowNo);
+  var link=cell.querySelector('.other-fee-link');
+  if(link){
+    var rect=link.getBoundingClientRect();
+    var dlgW=dialog.offsetWidth;
+    var dialogLeft=rect.right-dlgW;
+    if(dialogLeft<10) dialogLeft=10;
+    if(dialogLeft+dlgW>window.innerWidth-10) dialogLeft=window.innerWidth-dlgW-10;
+    var dlgH=dialog.offsetHeight;
+    var top=rect.bottom+8;
+    if(top+dlgH>window.innerHeight-10) top=rect.top-dlgH-8;
+    if(top<10) top=10;
+    dialog.style.top=top+'px';
+    dialog.style.left=dialogLeft+'px';
+  }
+}
+
+function exitEditMode(rowNo){
+  feeEditMode=false;
+  var dialog=document.getElementById('feeTip');
+  dialog.classList.remove('open');
+  activeDialogNo=null;
+  dialog.onmouseenter=function(){clearTimeout(feeDialogTimer);};
+  dialog.onmouseleave=function(){hideFeeDialog();};
+}
+
+function tipEditUpdateName(rowNo,id,newName){
+  var items=feeItems[rowNo]||[];
+  for(var i=0;i<items.length;i++){
+    if(items[i].id===id){items[i].name=newName;break;}
+  }
+  refreshFeeCell(rowNo);
+}
+
+function tipEditUpdateAmount(rowNo,id,newAmtStr){
+  var newAmt=parseFloat(newAmtStr);
+  var items=feeItems[rowNo]||[];
+  for(var i=0;i<items.length;i++){
+    if(items[i].id===id){
+      if(!isNaN(newAmt)) items[i].amount=newAmt;
+      break;
+    }
+  }
+  refreshFeeCell(rowNo);
+  enterEditMode(rowNo);
+}
+
+function tipEditDeleteItem(rowNo,id){
+  feeItems[rowNo]=feeItems[rowNo].filter(function(item){return item.id!==id;});
+  refreshFeeCell(rowNo);
+  enterEditMode(rowNo);
+  showToast('费用已删除','ok');
+}
+
+function tipEditAddItem(rowNo){
+  var name=document.getElementById('tipNewName').value.trim();
+  var amt=parseFloat(document.getElementById('tipNewAmt').value);
+  if(!name){showToast('请输入费用名称','warn');return;}
+  if(isNaN(amt)){showToast('请输入有效金额','warn');return;}
+  feeItems[rowNo].push({id:feeIdCounter++,name:name,amount:amt});
+  refreshFeeCell(rowNo);
+  enterEditMode(rowNo);
+  showToast('费用已添加','ok');
 }
 
 // 下拉框相关
@@ -642,11 +766,10 @@ function toggleFee(e){
 }
 function reVis(){if(fOpen)setHDF(true);}
 
-// ===== 渲染表格行（当前页） =====
 function renderRows(data){
   var html='';
   if(!data||data.length===0){
-    var colCount=fOpen?25:15;
+    var colCount=fOpen?24:14;
     html='<tr><td colspan="'+colCount+'" style="text-align:center;padding:48px 0;color:#9ca3af;font-size:14px;">'+
       '<div style="display:flex;flex-direction:column;align-items:center;gap:10px">'+
       '<svg width="48" height="48" viewBox="0 0 64 64" fill="none" stroke="#d1d5db" stroke-width="2"><rect x="8" y="8" width="48" height="48" rx="4"/><path d="M20 32h24M20 22h24M20 42h16"/></svg>'+
@@ -655,7 +778,6 @@ function renderRows(data){
     document.getElementById('pginfo').innerHTML='共 <strong>0</strong> 条';
     return;
   }
-  // 分页截取
   var pageSize=parseInt(document.getElementById('pageSizeSelect').value)||30;
   var start=(curP-1)*pageSize;
   var end=Math.min(start+pageSize,data.length);
@@ -673,8 +795,7 @@ function renderRows(data){
       '<td class="muted">'+row.yardP+'</td>'+
       '<td class="muted">'+row.yardR+'</td>'+
       '<td class="muted">'+row.outerYard+'</td>'+
-      '<td style="text-align:center;padding:4px 6px;white-space:normal;min-width:120px">'+renderLocTags(row.loc)+'</td>'+
-      '<td>'+row.route+'</td>'+
+      '<td class="route-cell"><span class="route-short" data-full="'+escHtml(row.routeFull)+'" onmouseenter="showRouteTooltip(this)" onmouseleave="hideRouteTooltip()">'+row.routeShort+'</span></td>'+
       '<td>'+row.lop+'</td>'+
       '<td>'+row.name+'</td>'+
       '<td>'+row.plate+'</td>'+
@@ -687,7 +808,7 @@ function renderRows(data){
       '<td class="hd hdf">'+fa(row.chao)+'</td>'+
       '<td class="hd hdf">'+fa(row.feng)+'</td>'+
       '<td class="hd hdf">'+fa(row.ting)+'</td>'+
-      '<td class="hd hdf" id="otherCell_'+row.no+'">'+renderOtherFeeCell(row.no)+'</td>'+
+      '<td class="hd hdf other-fee-cell" id="otherCell_'+row.no+'">'+renderOtherFeeCell(row.no)+'</td>'+
     '</tr>';
   }
   document.getElementById('TB').innerHTML=html;
@@ -706,25 +827,29 @@ function syncAllCb(){
 function doSearch(){
   var name=document.getElementById('s-name').value.trim();
   var plate=document.getElementById('s-plate').value.trim();
-  var loc=document.getElementById('s-loc').value.trim();
+  var oy=document.getElementById('s-oy').value.trim();
   var yp=document.getElementById('s-yp').value.trim();
   var yr=document.getElementById('s-yr').value.trim();
   var cab=document.getElementById('f-cab').value.trim();
   var box=document.getElementById('f-box').value.trim();
   var bill=document.getElementById('f-bill').value.trim();
   var lop=document.getElementById('f-lop').value.trim();
-  var hasF=name||plate||loc||yp||yr||cab||box||bill||lop;
+  var d1=document.getElementById('f-d1').value;
+  var d2=document.getElementById('f-d2').value;
+  var hasF=name||plate||oy||yp||yr||cab||box||bill||lop||d1||d2;
   if(!hasF){showToast('请填写筛选信息','warn');return;}
   var r=ALLDATA.filter(function(row){
     if(name&&row.name.indexOf(name)<0)return false;
     if(plate&&row.plate.indexOf(plate)<0)return false;
-    if(loc&&!row.loc.split('+').some(function(l){return l.indexOf(loc)>=0;}))return false;
+    if(oy&&row.outerYard.indexOf(oy)<0)return false;
     if(yp&&row.yardP.indexOf(yp)<0)return false;
     if(yr&&row.yardR.indexOf(yr)<0)return false;
     if(cab&&row.cab.indexOf(cab)<0)return false;
     if(box&&row.box.indexOf(box)<0)return false;
     if(bill&&row.bill.indexOf(bill)<0)return false;
     if(lop&&row.lop.indexOf(lop)<0)return false;
+    if(d1&&row.time.slice(0,10)<d1)return false;
+    if(d2&&row.time.slice(0,10)>d2)return false;
     return true;
   });
   curP=1;
@@ -733,7 +858,7 @@ function doSearch(){
 }
 
 function doReset(){
-  ['s-name','s-plate','s-loc','s-yp','s-yr'].forEach(function(id){document.getElementById(id).value='';});
+  ['s-name','s-plate','s-oy','s-yp','s-yr'].forEach(function(id){document.getElementById(id).value='';});
   ['f-cab','f-box','f-bill','f-lop','f-d1','f-d2'].forEach(function(id){document.getElementById(id).value='';});
   clearAllChecks();
   curP=1;
@@ -752,14 +877,14 @@ function doExport(){
   var exportData=DISP.filter(function(row){return selectedNos.indexOf(row.no)>=0;});
 
   // 构建表头
-  var headers=['序号','系统柜号','集装箱号','提运单号','出运时间','提柜点','还柜点','外堆场','装柜地点','运输线路','物流操作人员','司机姓名','车牌号','汇总(CNY)','计件费','增点费','异提费','压夜费','过磅费','超重费','封条费','停车费','其他费用'];
+  var headers=['序号','系统柜号','集装箱号','提运单号','出运时间','提柜点','还柜点','外堆场','装柜路线','物流操作人员','司机姓名','车牌号','汇总(CNY)','计件费','增点费','异提费','压夜费','过磅费','超重费','封条费','停车费','其他费用'];
 
   var wsData=[headers];
   exportData.forEach(function(row){
     var otherTotal=getFeeTotal(row.no);
     wsData.push([
       row.no, row.cab, row.box, row.bill, row.time,
-      row.yardP, row.yardR, row.outerYard, row.loc, row.route, row.lop,
+      row.yardP, row.yardR, row.outerYard, row.routeShort+'('+row.routeFull+')', row.lop,
       row.name, row.plate,
       row.fSum?parseFloat(row.fSum.toFixed(3)):0,
       row.ji?parseFloat(row.ji.toFixed(3)):0,
@@ -881,7 +1006,7 @@ function doTpl(){
 
   // 生成真实的模板xlsx文件并下载
   var wb=XLSX.utils.book_new();
-  var headers=['序号','系统柜号','集装箱号','提运单号','出运时间','提柜点','还柜点','外堆场','装柜地点','运输线路','物流操作人员','司机姓名','车牌号','计件费','增点费','异提费','压夜费','过磅费','超重费','封条费','停车费','其他费用'];
+  var headers=['序号','系统柜号','集装箱号','提运单号','出运时间','提柜点','还柜点','外堆场','装柜路线','物流操作人员','司机姓名','车牌号','计件费','增点费','异提费','压夜费','过磅费','超重费','封条费','停车费','其他费用'];
   var ws=XLSX.utils.aoa_to_sheet([headers]);
   ws['!cols']=headers.map(function(){return{wch:14};});
   XLSX.utils.book_append_sheet(wb,'司机费用明细模板',ws);
@@ -991,128 +1116,179 @@ document.getElementById('prevB').onclick=function(){goP(curP-1);};
 document.getElementById('nextB').onclick=function(){goP(curP+1);};
 document.getElementById('jmpB').onclick=function(){goP(parseInt(document.getElementById('jmpI').value)||1);};
 
-// ===== 修改2：其他费用Dialog - 可编辑可删除 =====
-function calcFeeTotal(){
-  return getFeeTotal(currentFeeRowNo);
-}
-
-function updateSummary(){
-  var total=calcFeeTotal();
-  var input=document.getElementById('feeSummaryInput');
-  input.value=total===0?'0.000':total.toFixed(3);
-  input.style.color=total<0?'#ef4444':'#0f766e';
-  // 修改1：更新列表中的单元格显示
-  if(currentFeeRowNo){
-    var cell=document.getElementById('otherCell_'+currentFeeRowNo);
-    if(cell) cell.innerHTML=renderOtherFeeCell(currentFeeRowNo);
-  }
-}
-
-function openOtherFeeDialog(rowNo){
-  currentFeeRowNo=rowNo;
-  if(!feeItems[currentFeeRowNo]) feeItems[currentFeeRowNo]=[];
-  renderFeeItems();
-  updateSummary();
-  feeAddOpen=false;
-  document.getElementById('feeNewInputs').classList.remove('open');
-  document.getElementById('newFeeName').value='';
-  document.getElementById('newFeeAmt').value='';
-  setFeeAddIcon(false);
-  document.getElementById('feeDialog').classList.add('open');
-}
-
-function renderFeeItems(){
-  var items=feeItems[currentFeeRowNo]||[];
-  var html='';
-  if(items.length===0){
-    html='<div style="text-align:center;padding:18px 0;color:#9ca3af;font-size:12px;">暂无费用明细，点击下方"添加费用"</div>';
-  }
-  for(var i=0;i<items.length;i++){
-    var item=items[i];
-    var amtColor=item.amount<0?'#ef4444':'#0f766e';
-    // 修改2：每条明细均为可编辑input + 删除按钮
-    html+='<div class="fee-item-row" data-fid="'+item.id+'">'+
-      '<input class="fee-item-name-input" type="text" value="'+escHtml(item.name)+'" placeholder="费用名称" '+
-        'onchange="updateFeeItemName('+item.id+',this.value)" title="点击修改名称">'+
-      '<input class="fee-item-amount-input" type="number" value="'+item.amount.toFixed(3)+'" step="0.001" '+
-        'style="color:'+amtColor+'" '+
-        'onchange="updateFeeItemAmount('+item.id+',parseFloat(this.value)||0)" '+
-        'onfocus="this.style.color=\'#374151\'" '+
-        'onblur="this.style.color=(parseFloat(this.value)<0?\'#ef4444\':\'#0f766e\')" '+
-        'title="点击修改金额">'+
-      '<span class="fee-item-unit">CNY</span>'+
-      '<button class="fee-item-del" onclick="deleteFeeItem('+item.id+')" title="删除此费用">'+
-        '<svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4l8 8M12 4l-8 8"/></svg>'+
-      '</button>'+
-    '</div>';
-  }
-  document.getElementById('feeItemList').innerHTML=html;
-}
+var activePopoverNo=null;
 
 function escHtml(s){
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-function updateFeeItemName(id,newName){
-  var items=feeItems[currentFeeRowNo]||[];
+function showRouteTooltip(el){
+  var tooltip=document.getElementById('routeTooltip');
+  tooltip.textContent=el.getAttribute('data-full');
+  tooltip.classList.add('open');
+  var rect=el.getBoundingClientRect();
+  tooltip.style.left=rect.left+'px';
+  tooltip.style.top=(rect.bottom+4)+'px';
+}
+
+function hideRouteTooltip(){
+  document.getElementById('routeTooltip').classList.remove('open');
+}
+
+function toggleFeePopover(rowNo,cellEl){
+  hideFeeDialog();
+  document.getElementById('feeTip').classList.remove('open');
+  if(activePopoverNo===rowNo){
+    closeFeePopover();
+    return;
+  }
+  closeFeePopover();
+  activePopoverNo=rowNo;
+  if(!feeItems[rowNo]) feeItems[rowNo]=[];
+  renderFeePopover(rowNo,cellEl);
+}
+
+function renderFeePopover(rowNo,cellEl){
+  var popover=document.getElementById('feePopover');
+  var items=feeItems[rowNo]||[];
+  var total=getFeeTotal(rowNo);
+  var totalCls=total<0?'neg':'pos';
+  var totalStr=total<0?'<span style="color:#ef4444">'+total.toFixed(3)+'</span>':total.toFixed(3);
+  var html='<div class="fee-popover-title"><div class="fee-popover-title-left"><span>其他费用明细</span><span class="fee-popover-title-total '+totalCls+'">合计：'+totalStr+'</span><span class="fee-popover-title-unit">CNY</span></div>'+
+    '<button class="fee-popover-close" onclick="closeFeePopover()">'+
+    '<svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>';
+  html+='<div class="fee-popover-body"><div class="fee-popover-list">';
+  for(var i=0;i<items.length;i++){
+    var item=items[i];
+    var amtCls=item.amount<0?'neg':'pos';
+    html+='<div class="fee-popover-item">'+
+      '<input class="fee-popover-item-name-input" type="text" value="'+escHtml(item.name)+'" onchange="popoverUpdateName('+rowNo+','+item.id+',this.value)">'+
+      '<input class="fee-popover-item-amount-input '+amtCls+'" type="text" value="'+item.amount.toFixed(3)+'" onchange="popoverUpdateAmount('+rowNo+','+item.id+',this.value)">'+
+      '<span class="fee-popover-item-unit">CNY</span>'+
+      '<button class="fee-popover-item-del" onclick="popoverDeleteItem('+rowNo+','+item.id+')">'+
+      '<svg width="8" height="8" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>'+
+    '</div>';
+  }
+  html+='</div>';
+  html+='<div class="fee-popover-add">'+
+    '<div class="fee-popover-add-row">'+
+    '<input class="fee-popover-add-input name-inp" id="popNewName" type="text" placeholder="费用名称">'+
+    '<input class="fee-popover-add-input amt-inp" id="popNewAmt" type="text" placeholder="金额">'+
+    '<button class="fee-popover-add-btn" onclick="popoverAddItem('+rowNo+')">添加</button>'+
+    '</div></div>';
+  html+='<div class="fee-popover-summary">合计：'+(total<0?'<span style="color:#ef4444">'+total.toFixed(3)+'</span>':total.toFixed(3))+' CNY</div></div>';
+  popover.innerHTML=html;
+  popover.style.maxHeight='';
+  popover.classList.add('open');
+  var rect=cellEl.getBoundingClientRect();
+  var popW=popover.offsetWidth||280;
+  var left=rect.left;
+  if(left+popW>window.innerWidth-10) left=window.innerWidth-popW-10;
+  if(left<10) left=10;
+  popover.style.left=left+'px';
+  var belowTop=rect.bottom+6;
+  var aboveTop=rect.top-6;
+  var vh=window.innerHeight;
+  var popH=popover.offsetHeight;
+  var top,maxH;
+  if(belowTop+popH<=vh-10){
+    top=belowTop;
+  }else if(aboveTop-popH>=10){
+    top=aboveTop-popH;
+  }else{
+    var availBelow=vh-10-belowTop;
+    var availAbove=aboveTop-10;
+    if(availBelow>=availAbove){
+      top=belowTop;
+      maxH=availBelow;
+    }else{
+      top=10;
+      maxH=aboveTop-10;
+    }
+    if(maxH<150) maxH=150;
+    popover.style.maxHeight=maxH+'px';
+  }
+  popover.style.top=top+'px';
+}
+
+function popoverUpdateName(rowNo,id,newName){
+  var items=feeItems[rowNo]||[];
   for(var i=0;i<items.length;i++){
     if(items[i].id===id){items[i].name=newName;break;}
   }
+  refreshFeeCell(rowNo);
 }
 
-function updateFeeItemAmount(id,newAmt){
-  var items=feeItems[currentFeeRowNo]||[];
+function popoverUpdateAmount(rowNo,id,newAmtStr){
+  var items=feeItems[rowNo]||[];
+  var newAmt=parseFloat(newAmtStr);
   for(var i=0;i<items.length;i++){
-    if(items[i].id===id){items[i].amount=newAmt;break;}
+    if(items[i].id===id){
+      if(!isNaN(newAmt)) items[i].amount=newAmt;
+      break;
+    }
   }
-  updateSummary();
+  var cell=document.getElementById('otherCell_'+rowNo);
+  renderFeePopover(rowNo,cell);
+  refreshFeeCell(rowNo);
 }
 
-function deleteFeeItem(id){
-  var items=feeItems[currentFeeRowNo]||[];
-  feeItems[currentFeeRowNo]=items.filter(function(item){return item.id!==id;});
-  renderFeeItems();
-  updateSummary();
+function popoverDeleteItem(rowNo,id){
+  feeItems[rowNo]=feeItems[rowNo].filter(function(item){return item.id!==id;});
+  var cell=document.getElementById('otherCell_'+rowNo);
+  renderFeePopover(rowNo,cell);
+  refreshFeeCell(rowNo);
   showToast('费用已删除','ok');
 }
 
-function closeFeeDialog(){
-  document.getElementById('feeDialog').classList.remove('open');
-  currentFeeRowNo=null;
-}
-
-function setFeeAddIcon(isMinus){
-  var svg=document.getElementById('feeAddIcon');
-  if(isMinus){
-    svg.innerHTML='<line x1="2" y1="7" x2="12" y2="7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>';
-  } else {
-    svg.innerHTML='<line x1="7" y1="2" x2="7" y2="12" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><line x1="2" y1="7" x2="12" y2="7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>';
-  }
-}
-
-function toggleFeeAddInput(){
-  feeAddOpen=!feeAddOpen;
-  document.getElementById('feeNewInputs').classList.toggle('open',feeAddOpen);
-  setFeeAddIcon(feeAddOpen);
-  if(feeAddOpen) document.getElementById('newFeeName').focus();
-}
-
-function addNewFeeItem(){
-  var name=document.getElementById('newFeeName').value.trim();
-  var amt=parseFloat(document.getElementById('newFeeAmt').value);
+function popoverAddItem(rowNo){
+  var name=document.getElementById('popNewName').value.trim();
+  var amt=parseFloat(document.getElementById('popNewAmt').value);
   if(!name){showToast('请输入费用名称','warn');return;}
-  if(isNaN(amt)){showToast('请输入有效金额（支持负数）','warn');return;}
-  if(!feeItems[currentFeeRowNo]) feeItems[currentFeeRowNo]=[];
-  feeItems[currentFeeRowNo].push({id:feeIdCounter++,name:name,amount:amt});
-  renderFeeItems();
-  updateSummary();
-  document.getElementById('newFeeName').value='';
-  document.getElementById('newFeeAmt').value='';
+  if(isNaN(amt)){showToast('请输入有效金额','warn');return;}
+  feeItems[rowNo].push({id:feeIdCounter++,name:name,amount:amt});
+  var cell=document.getElementById('otherCell_'+rowNo);
+  renderFeePopover(rowNo,cell);
+  refreshFeeCell(rowNo);
   showToast('费用已添加','ok');
 }
 
-document.getElementById('feeDialog').addEventListener('click',function(e){
-  if(e.target===document.getElementById('feeDialog')) closeFeeDialog();
+function refreshFeeCell(rowNo){
+  var cell=document.getElementById('otherCell_'+rowNo);
+  if(cell){
+    var inner=renderOtherFeeCell(rowNo);
+    cell.innerHTML=inner;
+  }
+}
+
+function closeFeePopover(){
+  document.getElementById('feePopover').classList.remove('open');
+  activePopoverNo=null;
+}
+
+var feePopoverTimer=null;
+
+function startFeePopoverClose(){
+  feePopoverTimer=setTimeout(function(){closeFeePopover();},300);
+}
+
+document.addEventListener('click',function(e){
+  var popover=document.getElementById('feePopover');
+  if(popover.classList.contains('open')&&!popover.contains(e.target)){
+    closeFeePopover();
+  }
+});
+
+function clearFeeDialogTimer(){
+  clearTimeout(feeDialogTimer);
+}
+
+var feeTipEl=document.getElementById('feeTip');
+feeTipEl.addEventListener('mouseenter',function(){
+  if(!feeEditMode) clearTimeout(feeDialogTimer);
+});
+feeTipEl.addEventListener('mouseleave',function(){
+  if(!feeEditMode) hideFeeDialog();
 });
 
 // ===== 初始化 =====
